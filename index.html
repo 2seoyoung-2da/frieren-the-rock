@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vegan Delights - 비건 디저트 카페</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Markazi+Text:wght@400;500;600;700&family=Newsreader:wght@400;500;600;700&family=Cactus+Classical+Serif:wght@400;500;600;700&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Logo -->
+            <div class="logo">
+                <h1>Frieren The Rock</h1>
+            </div>
+
+            <!-- Main Navigation -->
+            <nav class="main-nav" id="mainNav">
+                <button class="nav-close" id="navClose">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul class="nav-menu">
+                    <li class="nav-item dropdown">
+                                                    <a href="#" class="nav-link">MENU</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#cake">CAKE</a></li>
+                            <li><a href="#dessert">DESSERT</a></li>
+                            <li><a href="#drink">DRINK</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#recipe" class="nav-link">RECIPE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#order" class="nav-link">ORDER</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- User Actions -->
+            <div class="user-actions">
+                <button class="notification-btn" id="notificationBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge"></span>
+                </button>
+                <button class="profile-btn" id="profileBtn">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="login-btn" id="loginBtn">로그인</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Intro Animation Section -->
+    <section class="intro-section" id="introSection">
+        <div class="intro-content">
+
+            
+            <!-- Cake Box Animation -->
+            <div class="cake-box-container">
+                <div class="cake-box" id="cakeBox">
+                    <!-- Closed Box State SVG -->
+                    <div class="box-closed">
+                        <svg width="400" height="350" viewBox="0 0 400 350" class="cake-box-svg">
+                            <!-- Box Shadow -->
+                            <ellipse cx="200" cy="300" rx="120" ry="20" fill="rgba(0,0,0,0.2)"/>
+                            
+                            <!-- Closed Box -->
+                            <g class="box-base">
+                                <!-- Box base -->
+                                <path d="M80 180 L320 180 L340 200 L100 200 Z" fill="#ffffff" stroke="#d0d0d0" stroke-width="2"/>
+                                <path d="M100 200 L340 200 L340 270 L100 270 Z" fill="#f8f8f8" stroke="#d0d0d0" stroke-width="2"/>
+                                <path d="M320 180 L340 200 L340 270 L320 250 Z" fill="#f0f0f0" stroke="#d0d0d0" stroke-width="2"/>
+                                
+                                <!-- Transparent window -->
+                                <rect x="120" y="185" width="160" height="60" rx="5" fill="rgba(255,255,255,0.3)" stroke="#c0c0c0" stroke-width="1.5"/>
+                                <rect x="125" y="190" width="150" height="50" rx="3" fill="rgba(0,0,0,0.05)" stroke="none"/>
+                                
+                                <!-- Box lines -->
+                                <line x1="80" y1="180" x2="100" y2="200" stroke="#d0d0d0" stroke-width="2"/>
+                                <line x1="80" y1="250" x2="100" y2="270" stroke="#d0d0d0" stroke-width="2"/>
+                                <line x1="320" y1="250" x2="340" y2="270" stroke="#d0d0d0" stroke-width="2"/>
+                            </g>
+                        </svg>
+                    </div>
+                    
+                    <!-- Open Box State SVG (visible on hover) -->
+                    <div class="box-opened">
+                        <svg width="400" height="350" viewBox="0 0 400 350" class="cake-box-svg">
+                            <!-- Box Shadow -->
+                            <ellipse cx="200" cy="320" rx="140" ry="25" fill="rgba(0,0,0,0.25)"/>
+                            
+                            <!-- Open Box -->
+                            <g class="open-box">
+                                <!-- Open lid (뚜껑이 뒤로 젖혀진 상태) -->
+                                <path d="M60 50 L340 30 L360 50 L80 70 Z" fill="#ffffff" stroke="#d0d0d0" stroke-width="2"/>
+                                <path d="M80 70 L360 50 L360 120 L80 140 Z" fill="#f8f8f8" stroke="#d0d0d0" stroke-width="2"/>
+                                <path d="M340 30 L360 50 L360 120 L340 100 Z" fill="#f0f0f0" stroke="#d0d0d0" stroke-width="2"/>
+                                
+                                <!-- Transparent window on lid -->
+                                <rect x="120" y="55" width="160" height="60" rx="5" fill="rgba(255,255,255,0.3)" stroke="#c0c0c0" stroke-width="1.5"/>
+                                <rect x="125" y="60" width="150" height="50" rx="3" fill="rgba(0,0,0,0.05)" stroke="none"/>
+                                
+                                <!-- Box base (open) -->
+                                <path d="M80 180 L320 180 L340 200 L100 200 Z" fill="#ffffff" stroke="#d0d0d0" stroke-width="2"/>
+                                <path d="M100 200 L340 200 L340 280 L100 280 Z" fill="#f8f8f8" stroke="#d0d0d0" stroke-width="2"/>
+                                <path d="M320 180 L340 200 L340 280 L320 260 Z" fill="#f0f0f0" stroke="#d0d0d0" stroke-width="2"/>
+                                
+                                <!-- Connection lines -->
+                                <line x1="80" y1="140" x2="80" y2="180" stroke="#d0d0d0" stroke-width="2"/>
+                                <line x1="340" y1="100" x2="340" y2="200" stroke="#d0d0d0" stroke-width="2"/>
+                                
+                                <!-- Box structure lines -->
+                                <line x1="60" y1="50" x2="80" y2="70" stroke="#d0d0d0" stroke-width="2"/>
+                                <line x1="340" y1="30" x2="360" y2="50" stroke="#d0d0d0" stroke-width="2"/>
+                                <line x1="80" y1="180" x2="100" y2="200" stroke="#d0d0d0" stroke-width="2"/>
+                                <line x1="320" y1="180" x2="340" y2="200" stroke="#d0d0d0" stroke-width="2"/>
+                                <line x1="80" y1="260" x2="100" y2="280" stroke="#d0d0d0" stroke-width="2"/>
+                                <line x1="320" y1="260" x2="340" y2="280" stroke="#d0d0d0" stroke-width="2"/>
+                            </g>
+                            
+                            <!-- Floating sparkles -->
+                            <g class="floating-stars">
+                                <g class="star star-1" transform="translate(70, 30)">
+                                    <circle r="2" fill="rgba(255,200,150,0.6)"/>
+                                    <circle r="1" fill="rgba(255,220,180,0.8)"/>
+                                </g>
+                                <g class="star star-2" transform="translate(370, 60)">
+                                    <circle r="1.5" fill="rgba(150,200,255,0.6)"/>
+                                </g>
+                                <g class="star star-3" transform="translate(50, 160)">
+                                    <circle r="2.5" fill="rgba(255,180,200,0.5)"/>
+                                    <circle r="1.2" fill="rgba(255,200,220,0.7)"/>
+                                </g>
+                                <g class="star star-4" transform="translate(360, 140)">
+                                    <circle r="1.8" fill="rgba(200,255,180,0.6)"/>
+                                </g>
+                                <g class="star star-5" transform="translate(120, 300)">
+                                    <circle r="1.3" fill="rgba(220,180,255,0.5)"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                
+                <!-- Click instruction -->
+                <div class="click-instruction">
+                    <div class="click-indicator">
+                        <svg width="60" height="60" viewBox="0 0 60 60">
+                            <circle cx="30" cy="30" r="28" fill="#c8534a" stroke="#a8443c" stroke-width="2"/>
+                            <path d="M20 30 L35 30 M30 25 L35 30 L30 35" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Text Content -->
+            <div class="intro-text">
+                <p class="intro-main-text">Sweet moments with special muffins at Frieren The Rock</p>
+            </div>
+            
+
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <main class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Frieren The Rock<br>
+                Welcome to the world of special muffins
+            </h1>
+            <p class="hero-subtitle">
+                Create special moments with<br>
+                freshly baked warm muffins
+            </p>
+            <p class="hero-description">
+                Fill your day sweetly with fresh muffins made anew every day.
+            </p>
+            <p class="hero-description">
+                Experience special moments like Frieren at our cafe.
+            </p>
+            <p class="hero-footer">
+                Your special muffin story begins here.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Muffin Menu</button>
+                <button class="btn btn-secondary">Order Now</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Notification Dropdown -->
+    <div class="notification-dropdown" id="notificationDropdown">
+        <div class="notification-header">
+            <h3>알림</h3>
+            <button class="notification-settings">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+        <div class="notification-content">
+            <div class="notification-item">
+                <h4>게시물 알림</h4>
+                <p>내가 작성한 게시물이나 댓글에 다른 사람이 댓글이나 답글을 작성하면 알려줍니다.</p>
+            </div>
+            <div class="notification-item">
+                <h4>공지사항</h4>
+                <p>사이트에서 보내는 중요한 공지를 실시간으로 알려줍니다.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Dropdown -->
+    <div class="profile-dropdown" id="profileDropdown">
+        <div class="profile-header">
+            <h3>마이페이지</h3>
+        </div>
+        <div class="profile-content">
+            <a href="#" class="profile-link">
+                <i class="fas fa-user-edit"></i>
+                프로필 정보수정
+            </a>
+            <a href="#" class="profile-link">
+                <i class="fas fa-sign-out-alt"></i>
+                로그아웃
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Page Section -->
+    <main class="main-page" id="mainPage">
+        <div class="main-container">
+            <!-- Featured Menu Section -->
+            <section class="featured-menu">
+                <h3 class="section-title">Menu</h3>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <!-- PNG 이미지를 여기에 추가하세요: <img src="muffin.png" alt="시그니처 머핀"> -->
+                        </div>
+                        <h4 class="menu-name">Plain Muffin</h4>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <!-- PNG 이미지를 여기에 추가하세요: <img src="cake.png" alt="초콜릿 케이크"> -->
+                        </div>
+                        <h4 class="menu-name">Cake</h4>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <!-- PNG 이미지를 여기에 추가하세요: <img src="coffee.png" alt="아메리카노"> -->
+                        </div>
+                        <h4 class="menu-name">Coffee</h4>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="about-section">
+                <div class="about-content">
+                    <h3 class="section-title">Drink</h3>
+                    <p class="about-text korean-text">
+                        따뜻한 마음으로 만드는 수제 디저트와 정성스러운 서비스로 
+                        고객님께 특별한 경험을 선사하는 것이 저희의 목표입니다.
+                    </p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <div class="feature-icon">🌱</div>
+                            <h4 class="korean-text">신선한 재료</h4>
+                            <p class="korean-text">엄선된 재료만을 사용합니다</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">👩‍🍳</div>
+                            <h4 class="korean-text">수제 제조</h4>
+                            <p class="korean-text">모든 제품을 직접 만듭니다</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">💝</div>
+                            <h4 class="korean-text">정성과 사랑</h4>
+                            <p class="korean-text">마음을 담아 정성스럽게</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>로그인</h3>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <p>로그인이 필요합니다.</p>
+                <form class="login-form">
+                    <input type="email" placeholder="이메일" required>
+                    <input type="password" placeholder="비밀번호" required>
+                    <button type="submit" class="btn btn-primary">로그인</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
