@@ -180,7 +180,7 @@ const style = document.createElement('style');
 style.textContent = `
     .header.scrolled {
         background: rgba(255, 255, 255, 0.98);
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: none;
     }
 `;
 document.head.appendChild(style);
