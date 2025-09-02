@@ -1538,7 +1538,12 @@ html {
     width: auto;
     object-fit: contain;
     margin-top: 5px;
-} 
+}
+
+.logo a {
+    text-decoration: none;
+    display: block;
+}
 
 /* Instagram Icon Styles */
 .instagram-link {
@@ -1685,6 +1690,11 @@ html {
     border: none;
 }
 
+.nav-button.active {
+    font-weight: 600;
+    color: #c8534a;
+}
+
 .nav-button:hover {
     color: #c8534a;
     transform: translateY(-3px);
@@ -1741,7 +1751,8 @@ html {
 .muffin-nav-buttons {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    align-items: center;
+    gap: 0;
     flex-wrap: wrap;
     margin-bottom: 6rem;
 }
@@ -1767,5 +1778,213 @@ html {
     .muffin-nav-buttons .nav-button {
         width: 200px;
         text-align: center;
+    }
+} 
+
+.nav-separator {
+    color: #e75b14;
+    font-weight: 300;
+    font-size: 1.1rem;
+    margin: 0 0.5rem;
+} 
+
+/* Diary Page Styles */
+.diary-page {
+    padding-top: 100px;
+    min-height: 100vh;
+    background: #fcf7e1;
+}
+
+.diary-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.diary-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: #e75b14;
+    margin-bottom: 3rem;
+    font-weight: 600;
+    grid-column: 1 / -1;
+}
+
+/* Calendar Section */
+.calendar-section {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-left: 0.5rem;
+}
+
+.calendar-nav {
+    display: none;
+}
+
+.current-month {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #333;
+    font-weight: 300;
+    gap: 20px;
+}
+
+.current-month .month-number {
+    font-size: 6rem;
+    transform: translate(10px, -10px);
+}
+
+.current-month .month-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-family: 'Playfair Display', serif;
+}
+
+.current-month .month-name {
+    margin-bottom: 0px;
+}
+
+.calendar {
+    width: 100%;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    margin-bottom: 1rem;
+}
+
+.weekday {
+    text-align: center;
+    font-weight: 600;
+    color: #744e3b;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: #999;
+}
+
+.calendar-day.current-month-day {
+    color: #333;
+}
+
+.calendar-day:hover {
+    background: #f0f0f0;
+}
+
+.calendar-day.selected {
+    background: #e75b14;
+    color: white;
+}
+
+.calendar-day.has-entry {
+    position: relative;
+}
+
+.calendar-day.has-entry::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: #e75b14;
+    border-radius: 50%;
+}
+
+.calendar-day.has-entry.selected::after {
+    background: white;
+}
+
+/* Diary Content */
+.diary-content {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.diary-date {
+    margin-bottom: 1.5rem;
+}
+
+.diary-date h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #744e3b;
+    font-weight: 600;
+}
+
+.diary-text {
+    line-height: 1.8;
+}
+
+.diary-text p {
+    font-family: 'Nanum Brush Script', cursive;
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .diary-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .diary-title {
+        font-size: 2.5rem;
+    }
+    
+    .calendar-section,
+    .diary-content {
+        padding: 1.5rem;
+    }
+    
+    .diary-date h3 {
+        font-size: 1.5rem;
+    }
+    
+    .diary-text p {
+        font-size: 1.1rem;
     }
 } 

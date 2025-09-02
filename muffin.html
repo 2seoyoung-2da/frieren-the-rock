@@ -19,7 +19,9 @@
 
             <!-- Logo -->
             <div class="logo">
-                <img src="b_logo.png" alt="Frieren The Rock Logo">
+                <a href="index.html">
+                    <img src="b_logo.png" alt="Frieren The Rock Logo">
+                </a>
             </div>
 
             <!-- Main Navigation -->
@@ -31,15 +33,13 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link">MENU</a>
                         <ul class="dropdown-menu">
-                            <li><a href="muffin.html">MUFFIN</a></li>
-                            <li><a href="#cake">CAKE</a></li>
-                            <li><a href="#espresso">ESPRESSO</a></li>
-                            <li><a href="#beverage">BEVERAGE</a></li>
-                            <li><a href="#tea">TEA</a></li>
+                            <li><a href="muffin.html?category=muffin">MUFFIN</a></li>
+                            <li><a href="muffin.html?category=drink">DRINK</a></li>
+                            <li><a href="muffin.html?category=cake">CAKE</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="#recipe" class="nav-link">RECIPE</a>
+                        <a href="#recipe" class="nav-link">M.Diary</a>
                     </li>
                     <li class="nav-item">
                         <a href="#order" class="nav-link">ORDER</a>
@@ -63,11 +63,11 @@
                 <img src="v_logo2.png" alt="Frieren The Rock Logo">
             </div>
             <div class="muffin-nav-buttons">
-                <a href="muffin.html" class="nav-button">MUFFIN</a>
+                <a href="muffin.html" class="nav-button active">MUFFIN</a>
+                <span class="nav-separator">|</span>
+                <a href="#" class="nav-button">DRINK</a>
+                <span class="nav-separator">|</span>
                 <a href="#" class="nav-button">CAKE</a>
-                <a href="#" class="nav-button">ESPRESSO</a>
-                <a href="#" class="nav-button">BEVERAGE</a>
-                <a href="#" class="nav-button">TEA</a>
             </div>
             <div class="muffin-grid">
                 <div class="muffin-item">
@@ -120,5 +120,58 @@
     </main>
 
     <script src="script.js"></script>
+    <script>
+        // Navigation button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navButtons = document.querySelectorAll('.nav-button');
+            const muffinGrid = document.querySelector('.muffin-grid');
+            
+            // Check URL parameters to determine which category was selected
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category');
+            
+            // Set initial active button based on URL parameter
+            if (category) {
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                const targetButton = Array.from(navButtons).find(btn => 
+                    btn.textContent.toLowerCase() === category
+                );
+                if (targetButton) {
+                    targetButton.classList.add('active');
+                    
+                    // Handle initial menu content
+                    if (category === 'muffin') {
+                        muffinGrid.style.display = 'grid';
+                    } else if (category === 'drink' || category === 'cake') {
+                        muffinGrid.style.display = 'none';
+                    }
+                }
+            }
+            
+            navButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Remove active class from all buttons
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Handle menu content based on button clicked
+                    const buttonText = this.textContent;
+                    
+                    if (buttonText === 'MUFFIN') {
+                        muffinGrid.style.display = 'grid';
+                    } else if (buttonText === 'DRINK' || buttonText === 'CAKE') {
+                        muffinGrid.style.display = 'none';
+                    }
+                    
+                    // Prevent default navigation for demo
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html> 
