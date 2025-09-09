@@ -1150,35 +1150,32 @@ body {
         display: block;
     }
 
-    .main-nav {
+    .nav {
+        display: none;
+    }
+
+    .nav.active {
+        display: block;
         position: fixed;
         top: 0;
-        right: -100%;
+        left: 0;
         width: 300px;
         height: 100vh;
         background: white;
         flex-direction: column;
         justify-content: flex-start;
         padding: 2rem;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        transition: right 0.3s ease;
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: left 0.3s ease;
+        z-index: 1000;
     }
 
-    .main-nav.active {
-        right: 0;
-    }
-
-    .nav-close {
-        display: block;
-        align-self: flex-end;
-        margin-bottom: 2rem;
-    }
-
-    .nav-menu {
+    .nav-list {
         flex-direction: column;
         gap: 1.5rem;
         align-items: flex-start;
         width: 100%;
+        margin-left: 1rem;
     }
 
     .dropdown-menu {
@@ -1204,28 +1201,23 @@ body {
     /* Intro Section Mobile */
     .intro-content {
         padding: 1rem;
+        flex-direction: column;
+        text-align: center;
     }
 
-    .yummy-logo {
-        font-size: 2rem;
-        padding: 1rem 2rem;
+    .intro-main-text {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
     }
 
-    .star {
-        font-size: 1.2rem;
-        margin: 0 0.5rem;
+    .cake-box-container {
+        margin-top: 1rem;
     }
 
     .cake-box {
-        width: 260px;
-        height: 200px;
+        width: 280px;
+        height: 220px;
         transform: rotateX(-6deg) rotateY(10deg);
-    }
-
-    /* SVG Cake Box Mobile Adjustments */
-    .cake-box {
-        width: 350px;
-        height: 300px;
     }
 
     .cake-box-svg {
@@ -1238,10 +1230,6 @@ body {
         height: 50px;
     }
 
-    .intro-main-text {
-        font-size: 1.8rem;
-    }
-
     .skip-intro {
         top: 1rem;
         right: 1rem;
@@ -1251,16 +1239,49 @@ body {
 
     .hero-content {
         padding: 0 1rem;
+        text-align: center;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .hero-welcome-text {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-title {
+        margin: 1rem 0;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin: 1.5rem 0;
+    }
+
+    .hero-buttons {
+        margin-top: 1.5rem;
+    }
+
+    .hero-title img {
+        max-width: 85%;
+        height: auto;
+        margin: 0.5rem 0;
     }
 
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 1rem;
     }
 
     .btn {
         width: 100%;
         max-width: 250px;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
     }
 
     .notification-dropdown,
@@ -1272,16 +1293,43 @@ body {
 }
 
 @media (max-width: 480px) {
-    .hero-title {
-        font-size: 2rem;
+    .intro-main-text {
+        font-size: 1.5rem;
+    }
+
+    .cake-box {
+        width: 250px;
+        height: 200px;
+    }
+
+    .click-indicator svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .hero-welcome-text {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
     }
     
-    .hero-subtitle {
-        font-size: 1.1rem;
+    .hero-title img {
+        max-width: 90%;
+        margin: 0.8rem 0;
     }
     
     .hero-description {
-        font-size: 0.95rem;
+        font-size: 0.8rem;
+        line-height: 1.4;
+        margin: 1.2rem 0;
+    }
+
+    .hero-buttons {
+        margin-top: 1.2rem;
+    }
+
+    .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
     }
 }
 
@@ -1570,30 +1618,152 @@ html {
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
-    .main-title {
-        font-size: 2.5rem;
+    .muffin-page {
+        margin-top: 80px;
+        padding: 1rem;
     }
-    
-    .hero-subtitle {
-        font-size: 1.8rem;
+
+    .muffin-logo {
+        margin-bottom: 2rem;
     }
-    
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
+
+    .muffin-logo img {
+        max-width: 300px;
     }
-    
-    .menu-grid {
-        grid-template-columns: 1fr;
+
+    .muffin-nav-buttons {
+        gap: 0.5rem;
+        margin-bottom: 3rem;
     }
-    
-    .about-features {
-        grid-template-columns: 1fr;
+
+    .nav-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .muffin-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .muffin-item {
+        text-align: center;
+    }
+
+    .muffin-item img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .muffin-item h3 {
+        font-size: 1.1rem;
+        margin: 0.5rem 0;
+    }
+
+    .muffin-item p {
+        font-size: 0.9rem;
+    }
+
+    .menu-category {
+        margin: 2rem 0 1rem 0;
+    }
+
+    .category-title {
+        font-size: 1.2rem;
+    }
+
+    .category-note {
+        font-size: 0.8rem;
     }
     
     .main-nav .nav-link {
         font-size: 1.1rem !important;
         padding: 1rem !important;
+    }
+
+    /* About Section Mobile */
+    .about-section {
+        padding: 2rem 0 calc(2rem + 150px);
+    }
+
+    .about-content {
+        padding: 0 1rem;
+    }
+
+    .about-text {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+
+    .about-features {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .feature {
+        padding: 1rem;
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+    }
+
+    .feature h4 {
+        font-size: 1.2rem;
+    }
+
+    .feature p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .muffin-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .muffin-logo img {
+        max-width: 250px;
+    }
+
+    .nav-button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .muffin-item h3 {
+        font-size: 1rem;
+    }
+
+    .muffin-item p {
+        font-size: 0.8rem;
+    }
+
+    .category-title {
+        font-size: 1.1rem;
+    }
+
+    /* About Section Small Mobile */
+    .about-section {
+        padding: 1.5rem 0 calc(1.5rem + 100px);
+    }
+
+    .about-text {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .feature-icon {
+        font-size: 2rem;
+    }
+
+    .feature h4 {
+        font-size: 1.1rem;
+    }
+
+    .feature p {
+        font-size: 0.8rem;
     }
 } 
 
@@ -1606,9 +1776,9 @@ html {
 
 /* Main Hero Visual Section */
 .hero {
-    height: calc(80vh + 300px);
+    height: 100vh;
     background: url('./main.jpg');
-    background-size: 100% auto;
+    background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     display: flex;
@@ -1809,7 +1979,7 @@ html {
 
 @media (max-width: 480px) {
     .muffin-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .muffin-title {
@@ -2274,6 +2444,11 @@ html {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .diary-page {
+        margin-top: 80px;
+        padding: 1rem;
+    }
+
     .diary-container {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -2282,25 +2457,48 @@ html {
     .calendar-section {
         grid-column: 1;
         grid-row: 2;
+        padding: 1rem;
     }
 
     .diary-content {
         grid-column: 1;
         grid-row: 3;
+        padding: 1rem;
     }
 
     .upload-section {
         grid-column: 1;
         grid-row: 4;
+        padding: 1rem;
     }
     
     .diary-title {
         font-size: 2.5rem;
+        text-align: center;
     }
-    
-    .calendar-section,
-    .diary-content {
-        padding: 1.5rem;
+
+    .calendar-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .calendar-nav {
+        gap: 0.5rem;
+    }
+
+    .calendar-nav button {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .calendar-weekdays {
+        font-size: 0.8rem;
+    }
+
+    .calendar-day {
+        font-size: 0.8rem;
+        padding: 0.3rem;
     }
     
     .diary-date h3 {
@@ -2309,6 +2507,40 @@ html {
     
     .diary-text p {
         font-size: 1.1rem;
+    }
+
+    .diary-image {
+        margin: 1rem 0;
+    }
+
+    .diary-image img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .diary-title {
+        font-size: 2rem;
+    }
+
+    .calendar-section,
+    .diary-content,
+    .upload-section {
+        padding: 0.8rem;
+    }
+
+    .calendar-day {
+        font-size: 0.7rem;
+        padding: 0.2rem;
+    }
+
+    .diary-date h3 {
+        font-size: 1.3rem;
+    }
+
+    .diary-text p {
+        font-size: 1rem;
     }
 }
 
@@ -2514,8 +2746,20 @@ html {
 
 /* Responsive Design for Order Page */
 @media (max-width: 768px) {
+    .order-page {
+        padding: 1rem 0;
+    }
+
     .order-container {
         padding: 0 1rem;
+    }
+
+    .order-logo {
+        margin-bottom: 1.5rem;
+    }
+
+    .order-logo img {
+        max-width: 300px;
     }
     
     .order-title h1 {
@@ -2525,19 +2769,90 @@ html {
     .order-tabs {
         flex-direction: column;
         align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
     }
     
     .tab-button {
         width: 100%;
         max-width: 300px;
-        margin-bottom: 0.5rem;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        text-align: center;
     }
     
     .order-form {
         padding: 1.5rem;
+        margin: 0 0.5rem;
     }
     
     .order-form h2 {
         font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .form-image img {
+        max-width: 250px;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .submit-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .order-logo img {
+        max-width: 250px;
+    }
+
+    .order-title h1 {
+        font-size: 2rem;
+    }
+
+    .order-form {
+        padding: 1rem;
+        margin: 0;
+    }
+
+    .order-form h2 {
+        font-size: 1.3rem;
+    }
+
+    .form-image img {
+        max-width: 200px;
+    }
+
+    .tab-button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.7rem;
+        font-size: 0.8rem;
+    }
+
+    .submit-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
     }
 } 
