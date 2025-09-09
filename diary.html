@@ -24,14 +24,11 @@
                 </a>
             </div>
 
-            <!-- Main Navigation -->
-            <nav class="main-nav" id="mainNav">
-                <button class="nav-close" id="navClose">
-                    <i class="fas fa-times"></i>
-                </button>
-                <ul class="nav-menu">
+            <!-- Navigation -->
+            <nav class="nav">
+                <ul class="nav-list">
                     <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">MENU</a>
+                        <a href="muffin.html" class="nav-link">MENU</a>
                         <ul class="dropdown-menu">
                             <li><a href="muffin.html?category=muffin">MUFFIN</a></li>
                             <li><a href="muffin.html?category=drink">DRINK</a></li>
@@ -39,17 +36,17 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="diary.html" class="nav-link">M.Diary</a>
+                        <a href="diary.html" class="nav-link active">M.Diary</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#order" class="nav-link">ORDER</a>
+                        <a href="order.html" class="nav-link">ORDER</a>
                     </li>
                 </ul>
             </nav>
 
             <!-- User Actions -->
             <div class="user-actions">
-                <a href="#" class="instagram-link">
+                <a href="https://www.instagram.com/frierentherock?igsh=aXpzN3Bma3QydHFt" class="instagram-link" target="_blank">
                     <i class="fab fa-instagram"></i>
                 </a>
             </div>
@@ -96,6 +93,35 @@
                 </div>
             </div>
             
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <div class="password-form" id="passwordForm">
+                    <h3>Upload</h3>
+                    <div class="password-row">
+                        <input type="password" id="adminPassword" placeholder="password" />
+                        <button id="passwordSubmit">확인</button>
+                    </div>
+                </div>
+                
+                <div class="upload-form" id="uploadForm" style="display: none;">
+                    <h3>일기 업로드</h3>
+                    <div class="upload-controls">
+                        <input type="date" id="diaryDate" />
+                        <div class="file-upload-group">
+                            <label for="imageUpload">일기 사진:</label>
+                            <input type="file" id="imageUpload" accept="image/*" />
+                        </div>
+                        <div class="file-upload-group">
+                            <label for="thumbnailUpload">썸네일 사진:</label>
+                            <input type="file" id="thumbnailUpload" accept="image/*" />
+                        </div>
+                        <textarea id="diaryCaption" placeholder="일기 내용을 입력하세요..."></textarea>
+                        <button id="uploadSubmit">업로드</button>
+                        <button id="logoutBtn">로그아웃</button>
+                    </div>
+                </div>
+            </div>
+            
             <!-- Diary Content Section -->
             <div class="diary-content">
                 <div class="diary-date">
@@ -118,15 +144,44 @@
             const calendarDays = document.getElementById('calendarDays');
             const currentMonthEl = document.querySelector('.current-month');
             const selectedDateEl = document.getElementById('selectedDate');
-            const diaryTextEl = document.getElementById('diaryText');
+            const diaryTextEl = document.querySelector('.diary-text');
             
-            // Sample diary entries
-            const diaryEntries = {
-                '2025-08-01': '오늘은 새로운 레몬 머핀 레시피를 시도해봤어요. 고객님들이 정말 좋아해주셨네요! 특히 김씨 부부께서는 "정말 맛있어요"라고 말씀해주셔서 기분이 좋았습니다. 내일은 베리베리 머핀도 만들어볼까 해요.',
-                '2025-08-02': '오늘은 정말 바쁜 하루였어요. 주말이라 손님이 많으셨는데, 모두 만족해주셔서 다행이에요. 애플크럼블 머핀이 특히 인기가 많았어요!',
-                '2025-08-03': '새로운 고객님이 오셨어요. 티라미수 머핀을 드시고 정말 맛있다고 하셨는데, 이런 순간이 가장 행복해요.',
-                '2025-08-15': '오늘은 베리베리 머핀을 새로 만들어봤어요. 블루베리와 라즈베리를 넣었는데, 색깔도 예쁘고 맛도 좋았어요!',
-                '2025-08-20': '단호박크림치즈 머핀을 시도해봤어요. 가을 느낌이 나는 머핀인데, 고객님들이 정말 좋아해주셨어요.'
+            // Admin password (실제 사용시 더 복잡한 비밀번호로 변경)
+            const ADMIN_PASSWORD = 'frieren2025';
+            
+            // Password form elements
+            const passwordForm = document.getElementById('passwordForm');
+            const uploadForm = document.getElementById('uploadForm');
+            const adminPasswordInput = document.getElementById('adminPassword');
+            const passwordSubmitBtn = document.getElementById('passwordSubmit');
+            const logoutBtn = document.getElementById('logoutBtn');
+            
+            // Upload form elements
+            const diaryDateInput = document.getElementById('diaryDate');
+            const imageUploadInput = document.getElementById('imageUpload');
+            const thumbnailUploadInput = document.getElementById('thumbnailUpload');
+            const diaryCaptionInput = document.getElementById('diaryCaption');
+            const uploadSubmitBtn = document.getElementById('uploadSubmit');
+            
+            // Load diary entries from localStorage
+            function loadDiaryEntries() {
+                const saved = localStorage.getItem('diaryEntries');
+                return saved ? JSON.parse(saved) : {};
+            }
+            
+            // Save diary entries to localStorage
+            function saveDiaryEntries(entries) {
+                localStorage.setItem('diaryEntries', JSON.stringify(entries));
+            }
+            
+            // Get current diary entries
+            let diaryEntries = loadDiaryEntries();
+            
+            // Sample diary entries (fallback)
+            const sampleEntries = {
+                '2025-08-01': '오늘은 새로운 레몬 머핀 레시피를 시도해봤어요. 고객님들이 정말 좋아해주셨네요!',
+                '2025-08-02': '오늘은 정말 바쁜 하루였어요. 주말이라 손님이 많으셨는데, 모두 만족해주셔서 다행이에요.',
+                '2025-08-03': '새로운 고객님이 오셨어요. 티라미수 머핀을 드시고 정말 맛있다고 하셨는데, 이런 순간이 가장 행복해요.'
             };
             
             function renderCalendar(date) {
@@ -159,11 +214,21 @@
                         dayElement.classList.add('selected');
                     }
                     
+                    const dayNumber = document.createElement('div');
+                    dayNumber.textContent = dayDate.getDate();
+                    dayElement.appendChild(dayNumber);
+                    
                     if (diaryEntries[formatDate(dayDate)]) {
                         dayElement.classList.add('has-entry');
+                        
+                        // Add thumbnail image
+                        const thumbnail = document.createElement('img');
+                        thumbnail.src = diaryEntries[formatDate(dayDate)].thumbnailUrl || diaryEntries[formatDate(dayDate)].imageUrl;
+                        thumbnail.className = 'day-thumbnail';
+                        thumbnail.alt = 'Diary image';
+                        dayElement.appendChild(thumbnail);
                     }
                     
-                    dayElement.textContent = dayDate.getDate();
                     dayElement.addEventListener('click', () => selectDate(dayDate));
                     
                     calendarDays.appendChild(dayElement);
@@ -176,9 +241,18 @@
                 
                 const entry = diaryEntries[formatDate(date)];
                 if (entry) {
-                    diaryTextEl.textContent = entry;
+                    if (entry.imageUrl) {
+                        diaryTextEl.innerHTML = `
+                            <div class="diary-image">
+                                <img src="${entry.imageUrl}" alt="Diary image" />
+                            </div>
+                            <p>${entry.caption || ''}</p>
+                        `;
+                    } else {
+                        diaryTextEl.innerHTML = `<p>${entry}</p>`;
+                    }
                 } else {
-                    diaryTextEl.textContent = '이 날은 아직 일기가 없어요.';
+                    diaryTextEl.innerHTML = '<p>이 날은 아직 일기가 없어요.</p>';
                 }
                 
                 renderCalendar(currentDate);
@@ -199,6 +273,88 @@
                                'July', 'August', 'September', 'October', 'November', 'December'];
                 return months[month];
             }
+            
+            // Password authentication
+            passwordSubmitBtn.addEventListener('click', () => {
+                if (adminPasswordInput.value === ADMIN_PASSWORD) {
+                    passwordForm.style.display = 'none';
+                    uploadForm.style.display = 'block';
+                    adminPasswordInput.value = '';
+                } else {
+                    alert('비밀번호가 틀렸습니다.');
+                    adminPasswordInput.value = '';
+                }
+            });
+            
+            // Logout
+            logoutBtn.addEventListener('click', () => {
+                uploadForm.style.display = 'none';
+                passwordForm.style.display = 'block';
+                // Clear form
+                diaryDateInput.value = '';
+                imageUploadInput.value = '';
+                thumbnailUploadInput.value = '';
+                diaryCaptionInput.value = '';
+            });
+            
+            // Upload functionality
+            uploadSubmitBtn.addEventListener('click', () => {
+                const date = diaryDateInput.value;
+                const imageFile = imageUploadInput.files[0];
+                const thumbnailFile = thumbnailUploadInput.files[0];
+                const caption = diaryCaptionInput.value;
+                
+                if (!date || !imageFile) {
+                    alert('날짜와 일기 사진을 모두 선택해주세요.');
+                    return;
+                }
+                
+                // Convert main image to base64
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageUrl = e.target.result;
+                    let thumbnailUrl = imageUrl; // Default to main image if no thumbnail
+                    
+                    // If thumbnail is provided, convert it too
+                    if (thumbnailFile) {
+                        const thumbnailReader = new FileReader();
+                        thumbnailReader.onload = function(thumbE) {
+                            thumbnailUrl = thumbE.target.result;
+                            saveDiaryEntry(date, imageUrl, thumbnailUrl, caption);
+                        };
+                        thumbnailReader.readAsDataURL(thumbnailFile);
+                    } else {
+                        saveDiaryEntry(date, imageUrl, thumbnailUrl, caption);
+                    }
+                };
+                reader.readAsDataURL(imageFile);
+            });
+            
+            function saveDiaryEntry(date, imageUrl, thumbnailUrl, caption) {
+                // Save to diary entries
+                diaryEntries[date] = {
+                    imageUrl: imageUrl,
+                    thumbnailUrl: thumbnailUrl,
+                    caption: caption,
+                    uploadDate: new Date().toISOString()
+                };
+                
+                saveDiaryEntries(diaryEntries);
+                
+                // Refresh calendar
+                renderCalendar(currentDate);
+                
+                // Clear form
+                diaryDateInput.value = '';
+                imageUploadInput.value = '';
+                thumbnailUploadInput.value = '';
+                diaryCaptionInput.value = '';
+                
+                alert('일기가 성공적으로 업로드되었습니다!');
+            }
+            
+            // Set today's date as default
+            diaryDateInput.value = new Date().toISOString().split('T')[0];
             
             // Navigation buttons
             document.querySelector('.prev-month').addEventListener('click', () => {

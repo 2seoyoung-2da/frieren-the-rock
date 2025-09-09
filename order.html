@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - Frieren The Rock</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Markazi+Text:wght@400;500;600&family=Newsreader:wght@300;400;500&family=Cactus+Classical+Serif:wght@400&family=Nanum+Brush+Script&family=Caveat:wght@400;500;600&family=Indie+Flower&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="index.html"><img src="b_logo.png" alt="Frieren The Rock Logo"></a>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item dropdown">
+                        <a href="muffin.html" class="nav-link">MENU</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="muffin.html?category=muffin">MUFFIN</a></li>
+                            <li><a href="muffin.html?category=drink">DRINK</a></li>
+                            <li><a href="muffin.html?category=cake">CAKE</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="diary.html" class="nav-link">M.Diary</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="order.html" class="nav-link active">ORDER</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- User Actions -->
+            <div class="user-actions">
+                <a href="https://www.instagram.com/frierentherock?igsh=aXpzN3Bma3QydHFt" class="instagram-link" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Order Section -->
+    <main class="order-page">
+        <div class="order-container">
+            <div class="order-logo">
+                <img src="v_logo2.png" alt="Frieren The Rock Logo">
+            </div>
+
+            <!-- Order Tabs -->
+            <div class="order-tabs">
+                <button class="tab-button active" data-tab="table">SELAH TABLE</button>
+                <button class="tab-button" data-tab="cake">CAKE</button>
+                <button class="tab-button" data-tab="group">GROUP ORDER</button>
+            </div>
+
+            <!-- Table Reservation Form -->
+            <div class="tab-content active" id="table">
+                <div class="order-form">
+                    <h2>SELAH TABLE</h2>
+                    <div class="form-image">
+                        <img src="selah.jpeg" alt="Selah Table">
+                    </div>
+                    <form id="tableForm">
+                        <div class="form-group">
+                            <label for="tableName">이름 *</label>
+                            <input type="text" id="tableName" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tablePhone">연락처 *</label>
+                            <input type="tel" id="tablePhone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tableDate">예약 날짜 *</label>
+                            <input type="date" id="tableDate" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tableTime">예약 시간 *</label>
+                            <select id="tableTime" name="time" required>
+                                <option value="">시간 선택</option>
+                                <option value="09:00">09:00</option>
+                                <option value="09:30">09:30</option>
+                                <option value="10:00">10:00</option>
+                                <option value="10:30">10:30</option>
+                                <option value="11:00">11:00</option>
+                                <option value="11:30">11:30</option>
+                                <option value="12:00">12:00</option>
+                                <option value="12:30">12:30</option>
+                                <option value="13:00">13:00</option>
+                                <option value="13:30">13:30</option>
+                                <option value="14:00">14:00</option>
+                                <option value="14:30">14:30</option>
+                                <option value="15:00">15:00</option>
+                                <option value="15:30">15:30</option>
+                                <option value="16:00">16:00</option>
+                                <option value="16:30">16:30</option>
+                                <option value="17:00">17:00</option>
+                                <option value="17:30">17:30</option>
+                                <option value="18:00">18:00</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tableGuests">인원 수 *</label>
+                            <select id="tableGuests" name="guests" required>
+                                <option value="">인원 선택</option>
+                                <option value="2">2명</option>
+                                <option value="3">3명</option>
+                                <option value="4">4명</option>
+                                <option value="5">5명</option>
+                                <option value="6">6명</option>
+                                <option value="7">7명</option>
+                                <option value="8">8명</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tableMessage">요청사항</label>
+                            <textarea id="tableMessage" name="message" rows="3" placeholder="특별한 요청사항이 있으시면 적어주세요"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">예약 신청</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Cake Order Form -->
+            <div class="tab-content" id="cake">
+                <div class="order-form">
+                    <h2>CAKE</h2>
+                    <form id="cakeForm">
+                        <div class="form-group">
+                            <label for="cakeName">이름 *</label>
+                            <input type="text" id="cakeName" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cakePhone">연락처 *</label>
+                            <input type="tel" id="cakePhone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cakeType">케이크 종류 *</label>
+                            <select id="cakeType" name="cakeType" required>
+                                <option value="">케이크 선택</option>
+                                <option value="seasonal">제철 과일</option>
+                                <option value="salted">솔티 카라멜</option>
+                                <option value="basque">바스크 치즈</option>
+                                <option value="espresso">에스프레소</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cakeDate">픽업 날짜 *</label>
+                            <input type="date" id="cakeDate" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cakeTime">픽업 시간 *</label>
+                            <select id="cakeTime" name="time" required>
+                                <option value="">시간 선택</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="12:00">12:00</option>
+                                <option value="13:00">13:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                                <option value="18:00">18:00</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cakeMessage">요청사항</label>
+                            <textarea id="cakeMessage" name="message" rows="3" placeholder="케이크 디자인, 맛, 문구 등 특별한 요청사항을 적어주세요"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">주문 신청</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Group Order Form -->
+            <div class="tab-content" id="group">
+                <div class="order-form">
+                    <h2>단체 주문 (머핀, 음료)</h2>
+                    <form id="groupForm">
+                        <div class="form-group">
+                            <label for="groupName">이름 *</label>
+                            <input type="text" id="groupName" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="groupPhone">연락처 *</label>
+                            <input type="tel" id="groupPhone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="groupCompany">회사/단체명</label>
+                            <input type="text" id="groupCompany" name="company" placeholder="회사명 또는 단체명을 입력해주세요">
+                        </div>
+                        <div class="form-group">
+                            <label for="groupDate">픽업 날짜 *</label>
+                            <input type="date" id="groupDate" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="groupTime">픽업 시간 *</label>
+                            <select id="groupTime" name="time" required>
+                                <option value="">시간 선택</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="12:00">12:00</option>
+                                <option value="13:00">13:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                                <option value="18:00">18:00</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="groupMuffinQuantity">머핀 수량</label>
+                            <input type="number" id="groupMuffinQuantity" name="muffinQuantity" min="0" placeholder="머핀 개수">
+                        </div>
+                        <div class="form-group">
+                            <label for="groupDrinkQuantity">음료 수량</label>
+                            <input type="number" id="groupDrinkQuantity" name="drinkQuantity" min="0" placeholder="음료 개수">
+                        </div>
+                        <div class="form-group">
+                            <label for="groupItems">주문 상품 *</label>
+                            <textarea id="groupItems" name="items" rows="4" required placeholder="예: 레몬머핀 20개, 바닐라라떼 15개, 아메리카노 10개"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="groupMessage">요청사항</label>
+                            <textarea id="groupMessage" name="message" rows="3" placeholder="포장 방법, 배송 요청사항 등을 적어주세요"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">단체주문 신청</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+
+            // Form submissions
+            const forms = {
+                table: document.getElementById('tableForm'),
+                cake: document.getElementById('cakeForm'),
+                group: document.getElementById('groupForm')
+            };
+
+            Object.keys(forms).forEach(formType => {
+                forms[formType].addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData);
+                    
+                    // Generate SMS message
+                    const smsMessage = generateSMSMessage(formType, data);
+                    const phoneNumber = '010-2107-1740'; // 사장님 전화번호
+                    const smsUrl = `sms:${phoneNumber}?body=${encodeURIComponent(smsMessage)}`;
+                    
+                    // Open SMS app
+                    window.open(smsUrl);
+                    
+                    // Show confirmation
+                    alert('문자 앱이 열렸습니다. 전송 버튼을 눌러주세요!');
+                });
+            });
+
+            function generateSMSMessage(type, data) {
+                let message = '';
+                
+                if (type === 'table') {
+                    message = `🍰 셀라테이블 예약 신청\n`;
+                    message += `이름: ${data.name}\n`;
+                    message += `연락처: ${data.phone}\n`;
+                    message += `예약일: ${data.date}\n`;
+                    message += `시간: ${data.time}\n`;
+                    message += `인원: ${data.guests}명\n`;
+                    if (data.message) message += `요청사항: ${data.message}\n`;
+                } else if (type === 'cake') {
+                    message = `🎂 케이크 주문 신청\n`;
+                    message += `이름: ${data.name}\n`;
+                    message += `연락처: ${data.phone}\n`;
+                    message += `케이크: ${data.cakeType}\n`;
+                    message += `픽업일: ${data.date}\n`;
+                    message += `시간: ${data.time}\n`;
+                    if (data.message) message += `요청사항: ${data.message}\n`;
+                } else if (type === 'group') {
+                    message = `📦 단체주문 신청\n`;
+                    message += `이름: ${data.name}\n`;
+                    message += `연락처: ${data.phone}\n`;
+                    if (data.company) message += `회사/단체: ${data.company}\n`;
+                    message += `픽업일: ${data.date}\n`;
+                    message += `시간: ${data.time}\n`;
+                    if (data.muffinQuantity) message += `머핀 수량: ${data.muffinQuantity}개\n`;
+                    if (data.drinkQuantity) message += `음료 수량: ${data.drinkQuantity}개\n`;
+                    message += `주문상품: ${data.items}\n`;
+                    if (data.message) message += `요청사항: ${data.message}\n`;
+                }
+                
+                message += `\n프리렌 더 락`;
+                return message;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -38,12 +38,123 @@ body {
     align-items: center;
 }
 
+.nav {
+    margin-left: -2rem;
+}
+
 .logo h1 {
     font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
     font-weight: 700;
     color: #2d5016;
     letter-spacing: -0.5px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    margin-top: 0.2rem;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 6rem;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #e75b14;
+}
+
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+    min-width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f8f8f8;
+    color: #e75b14;
+}
+
+/* User Actions */
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.instagram-link {
+    color: #e75b14;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.instagram-link:hover {
+    color: #d04a0a;
 }
 
 .main-nav {
@@ -1605,6 +1716,9 @@ html {
     object-fit: contain;
     border-radius: 10px;
     margin-bottom: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .muffin-name {
@@ -1621,6 +1735,53 @@ html {
     color: #744e3b;
     margin: 0;
     font-weight: 300;
+}
+
+/* Menu Categories */
+.menu-category {
+    grid-column: 1 / -1;
+    margin: 3rem 0 1.5rem 0;
+    text-align: left;
+    position: relative;
+}
+
+.menu-category .category-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0rem;
+    position: relative;
+}
+
+.menu-category .category-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background-color: rgba(51, 51, 51, 0.3);
+    margin-left: 1rem;
+}
+
+.menu-category .category-note {
+    margin-bottom: 0.5rem;
+}
+
+
+.category-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 2px;
+}
+
+.category-note {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+    font-style: italic;
 }
 
 /* Responsive Design */
@@ -1821,6 +1982,8 @@ html {
     border-radius: 15px;
     padding: 1.5rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    grid-column: 1;
+    grid-row: 2;
 }
 
 .calendar-header {
@@ -1940,6 +2103,110 @@ html {
     border-radius: 15px;
     padding: 2rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    grid-column: 2;
+    grid-row: 2;
+}
+
+/* Upload Section */
+.upload-section {
+    margin-bottom: 2rem;
+    grid-column: 1 / -1;
+    grid-row: 3;
+}
+
+.password-form, .upload-form {
+    text-align: left;
+}
+
+.password-form h3 {
+    display: inline-block;
+    margin-right: 12rem;
+    margin-bottom: 0;
+}
+
+.password-form h3, .upload-form h3 {
+    font-family: 'Nanum Brush Script', cursive;
+    color: #744e3b;
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-transform: lowercase;
+}
+
+.password-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.password-form input {
+    padding: 0.8rem;
+    border: none;
+    border-bottom: 1px solid #744e3b;
+    border-radius: 0;
+    font-size: 1rem;
+    width: 200px;
+    background: transparent;
+}
+
+.password-form button, .upload-form button {
+    background: #744e3b;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.password-form button:hover, .upload-form button:hover {
+    background: #5a3a2a;
+}
+
+.upload-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.file-upload-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.file-upload-group label {
+    font-family: 'Nanum Brush Script', cursive;
+    color: #744e3b;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.upload-controls input, .upload-controls textarea {
+    padding: 0.8rem;
+    border: 2px solid #e75b14;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Nanum Brush Script', cursive;
+}
+
+.upload-controls textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.upload-controls button {
+    margin: 0.5rem;
+}
+
+#logoutBtn {
+    background: #666;
+}
+
+#logoutBtn:hover {
+    background: #444;
 }
 
 .diary-date {
@@ -1949,7 +2216,7 @@ html {
 .diary-date h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
-    color: #744e3b;
+    color: #e75b14;
     font-weight: 600;
 }
 
@@ -1964,11 +2231,67 @@ html {
     margin: 0;
 }
 
+.diary-image {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.diary-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.day-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.calendar-day.has-entry {
+    position: relative;
+}
+
+.calendar-day.has-entry > div:first-child {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .diary-container {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+    }
+
+    .calendar-section {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .diary-content {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .upload-section {
+        grid-column: 1;
+        grid-row: 4;
     }
     
     .diary-title {
@@ -1986,5 +2309,235 @@ html {
     
     .diary-text p {
         font-size: 1.1rem;
+    }
+}
+
+/* Order Page Styles */
+.order-page {
+    background-color: #fcf7e1;
+    min-height: 100vh;
+    padding: 2rem 0;
+    margin-top: 80px; /* Header height compensation */
+}
+
+.order-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.order-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.order-logo img {
+    max-width: 500px;
+    height: auto;
+    object-fit: contain;
+}
+
+.order-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.order-title h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: #e75b14;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.order-title p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: #666;
+    font-weight: 300;
+}
+
+/* Order Tabs */
+.order-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    border-bottom: none;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 1rem 2rem;
+    font-family: 'Cactus Classical Serif', serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: #666;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+    color: #333;
+}
+
+.tab-button.active {
+    color: #e75b14;
+    border-bottom: 3px solid #e75b14;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    border-bottom-color: #e75b14;
+    width: fit-content;
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Order Form */
+.order-form {
+    background: transparent;
+    padding: 2.5rem;
+    border-radius: 15px;
+    border: none;
+}
+
+.form-image {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.form-image img {
+    max-width: 300px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.order-form h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.form-group select {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
+}
+
+.form-group select option {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #333 !important;
+}
+
+/* 드롭다운 화살표 커스터마이징 */
+.form-group select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 0.7em top 50% !important;
+    background-size: 1em auto !important;
+    padding-right: 2.5em !important;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #e75b14;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.submit-btn {
+    width: 100%;
+    background: #e75b14;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    background: #d04a0a;
+}
+
+/* Responsive Design for Order Page */
+@media (max-width: 768px) {
+    .order-container {
+        padding: 0 1rem;
+    }
+    
+    .order-title h1 {
+        font-size: 2.5rem;
+    }
+    
+    .order-tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .tab-button {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .order-form {
+        padding: 1.5rem;
+    }
+    
+    .order-form h2 {
+        font-size: 1.5rem;
     }
 } 

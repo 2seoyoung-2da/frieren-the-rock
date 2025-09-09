@@ -24,14 +24,11 @@
                 </a>
             </div>
 
-            <!-- Main Navigation -->
-            <nav class="main-nav" id="mainNav">
-                <button class="nav-close" id="navClose">
-                    <i class="fas fa-times"></i>
-                </button>
-                <ul class="nav-menu">
+            <!-- Navigation -->
+            <nav class="nav">
+                <ul class="nav-list">
                     <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">MENU</a>
+                        <a href="muffin.html" class="nav-link">MENU</a>
                         <ul class="dropdown-menu">
                             <li><a href="muffin.html?category=muffin">MUFFIN</a></li>
                             <li><a href="muffin.html?category=drink">DRINK</a></li>
@@ -39,17 +36,17 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="#recipe" class="nav-link">M.Diary</a>
+                        <a href="diary.html" class="nav-link">M.Diary</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#order" class="nav-link">ORDER</a>
+                        <a href="order.html" class="nav-link">ORDER</a>
                     </li>
                 </ul>
             </nav>
 
             <!-- User Actions -->
             <div class="user-actions">
-                <a href="#" class="instagram-link">
+                <a href="https://www.instagram.com/frierentherock?igsh=aXpzN3Bma3QydHFt" class="instagram-link" target="_blank">
                     <i class="fab fa-instagram"></i>
                 </a>
             </div>
@@ -99,7 +96,7 @@
                 But you would be fed with the finest of wheat;<br> with honey from the rock I would satisfy you
             </p>
             <div class="hero-buttons">
-                <button class="btn btn-secondary">Order now</button>
+                <a href="order.html" class="btn btn-secondary">Order now</a>
             </div>
         </div>
     </main>
@@ -150,45 +147,52 @@
                 <div class="menu-grid">
                     <div class="menu-item">
                         <div class="menu-image">
-                            <!-- PNG 이미지를 여기에 추가하세요: <img src="muffin.png" alt="Vanilla"> -->
-                        </div>
-                        <h4 class="menu-name">Vanilla</h4>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-image">
-                            <img src="lemon.PNG" alt="Lemon">
+                            <img src="레몬.png" alt="Lemon" class="default-img">
+                            <img src="레몬단.png" alt="Lemon Hover" class="hover-img">
                         </div>
                         <h4 class="menu-name">Lemon</h4>
                     </div>
                     <div class="menu-item">
                         <div class="menu-image">
-                            <!-- PNG 이미지를 여기에 추가하세요: <img src="muffin.png" alt="Apple Crumble"> -->
+                            <img src="베리베리.png" alt="Berry Berry" class="default-img">
+                            <img src="베리베리단.png" alt="Berry Berry Hover" class="hover-img">
+                        </div>
+                        <h4 class="menu-name">Berry Berry</h4>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="애플크럼블.png" alt="Apple Crumble" class="default-img">
+                            <img src="애플크럼블단.png" alt="Apple Crumble Hover" class="hover-img">
                         </div>
                         <h4 class="menu-name">Apple Crumble</h4>
                     </div>
                     <div class="menu-item">
                         <div class="menu-image">
-                            <!-- PNG 이미지를 여기에 추가하세요: <img src="muffin.png" alt="Tiramisu"> -->
+                            <img src="티라미수.png" alt="Tiramisu" class="default-img">
+                            <img src="티라미수단.png" alt="Tiramisu Hover" class="hover-img">
                         </div>
                         <h4 class="menu-name">Tiramisu</h4>
                     </div>
                     <div class="menu-item">
                         <div class="menu-image">
-                            <!-- PNG 이미지를 여기에 추가하세요: <img src="muffin.png" alt="Choco Banana"> -->
+                            <img src="초코바나나.png" alt="Choco Banana" class="default-img">
+                            <img src="초코바나나단.png" alt="Choco Banana Hover" class="hover-img">
                         </div>
                         <h4 class="menu-name">Choco Banana</h4>
                     </div>
                     <div class="menu-item">
                         <div class="menu-image">
-                            <!-- PNG 이미지를 여기에 추가하세요: <img src="muffin.png" alt="Fig"> -->
+                            <img src="무화과.png" alt="Fresh Fig" class="default-img">
+                            <img src="무화과단.png" alt="Fresh Fig Hover" class="hover-img">
                         </div>
-                        <h4 class="menu-name">Fig</h4>
+                        <h4 class="menu-name">Fresh Fig</h4>
                     </div>
                     <div class="menu-item">
                         <div class="menu-image">
-                            <!-- PNG 이미지를 여기에 추가하세요: <img src="muffin.png" alt="Berry Berry"> -->
+                            <img src="단호박크림치즈.png" alt="Pumpkin Cream Cheese" class="default-img">
+                            <img src="단호박크림치즈단.png" alt="Pumpkin Cream Cheese Hover" class="hover-img">
                         </div>
-                        <h4 class="menu-name">Berry Berry</h4>
+                        <h4 class="menu-name">Pumpkin<br> Cream Cheese</h4>
                     </div>
                     <div class="menu-item">
                         <div class="menu-image">
@@ -196,13 +200,27 @@
                         </div>
                         <h4 class="menu-name">Sweet red-bean<br> cream-cheese</h4>
                     </div>
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="콘포테이토.png" alt="Corn Potato" class="default-img">
+                            <img src="콘포테이토단.png" alt="Corn Potato Hover" class="hover-img">
+                        </div>
+                        <h4 class="menu-name">Corn Potato</h4>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="치즈넛.png" alt="Cheese Nut" class="default-img">
+                            <img src="치즈넛단.png" alt="Cheese Nut Hover" class="hover-img">
+                        </div>
+                        <h4 class="menu-name">Cheese Nut</h4>
+                    </div>
                 </div>
             </section>
 
             <!-- About Section -->
             <section class="about-section">
                 <div class="about-content">
-                    <h3 class="section-title">Drink</h3>
+                    <h3 class="section-title">Best SET</h3>
                     <p class="about-text korean-text">
                         따뜻한 마음으로 만드는 수제 디저트와 정성스러운 서비스로 
                         고객님께 특별한 경험을 선사하는 것이 저희의 목표입니다.
