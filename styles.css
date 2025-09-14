@@ -769,11 +769,11 @@ body {
 /* Intro Text Styles */
 .intro-text {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 0;
     z-index: 10;
     position: absolute;
-    right: 35%;
-    top: 30%;
+    right: 15%;
+    top: calc(25% - 30px);
     transform: translateY(-50%) rotate(0deg) !important;
     width: auto;
     opacity: 0;
@@ -889,7 +889,7 @@ body {
 .hero-title img {
     max-width: 100%;
     height: auto;
-    max-height: 120px;
+    max-height: none;
     object-fit: contain;
 }
 
@@ -1205,13 +1205,22 @@ body {
         text-align: center;
     }
 
+    .intro-text {
+        position: absolute !important;
+        transform: translate(20px, -40px) !important;
+        margin-bottom: 0;
+        right: 15% !important;
+        top: calc(25% - 30px) !important;
+    }
+
     .intro-main-text {
         font-size: 1.8rem;
-        margin-bottom: 2rem;
+        margin-bottom: 0;
     }
 
     .cake-box-container {
-        margin-top: 1rem;
+        margin-top: 0;
+        order: 2;
     }
 
     .cake-box {
@@ -1244,31 +1253,42 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
+        position: relative;
     }
 
     .hero-welcome-text {
         font-size: 1.2rem;
         margin-bottom: 1rem;
+        margin-top: -50px !important;
     }
 
     .hero-title {
-        margin: 1rem 0;
+        margin: 1.5rem 0;
+        text-align: center;
     }
 
     .hero-description {
         font-size: 0.9rem;
         line-height: 1.5;
-        margin: 1.5rem 0;
+        margin: 2.5rem 0;
     }
 
     .hero-buttons {
-        margin-top: 1.5rem;
+        position: absolute;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .hero-title img {
         max-width: 85%;
         height: auto;
-        margin: 0.5rem 0;
+        margin: 0 auto;
+        display: block;
+        visibility: visible;
+        opacity: 1;
+        max-height: none;
     }
 
     .hero-buttons {
@@ -1293,8 +1313,22 @@ body {
 }
 
 @media (max-width: 480px) {
+    .intro-text {
+        position: absolute !important;
+        transform: translate(15px, -38px) !important;
+        margin-bottom: 0;
+        right: 15% !important;
+        top: calc(25% - 30px) !important;
+    }
+
     .intro-main-text {
         font-size: 1.5rem;
+        margin-bottom: 0;
+    }
+
+    .cake-box-container {
+        margin-top: 0;
+        order: 2;
     }
 
     .cake-box {
@@ -1310,21 +1344,29 @@ body {
     .hero-welcome-text {
         font-size: 0.9rem;
         margin-bottom: 0.8rem;
+        margin-top: -50px !important;
     }
     
     .hero-title img {
         max-width: 90%;
-        margin: 0.8rem 0;
+        margin: 0 auto;
+        display: block;
+        visibility: visible;
+        opacity: 1;
+        max-height: none;
     }
     
     .hero-description {
         font-size: 0.8rem;
         line-height: 1.4;
-        margin: 1.2rem 0;
+        margin: 2.5rem 0;
     }
 
     .hero-buttons {
-        margin-top: 1.2rem;
+        position: absolute;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .btn {
@@ -1459,6 +1501,52 @@ html {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+}
+
+/* Responsive menu grid for mobile */
+@media (max-width: 1024px) {
+    .menu-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+        justify-content: center !important;
+        margin: 0 auto !important;
+    }
+    
+    .menu-item img {
+        max-width: 150px !important;
+        height: 150px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+        justify-content: center !important;
+        margin: 0 auto !important;
+    }
+    
+    .menu-item img {
+        max-width: 130px !important;
+        height: 130px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.8rem !important;
+        justify-content: center !important;
+        margin: 0 auto !important;
+    }
+    
+    .menu-item img {
+        max-width: 110px !important;
+        height: 110px !important;
+    }
 }
 
 .menu-item {
@@ -1628,10 +1716,14 @@ html {
     }
 
     .muffin-logo img {
-        max-width: 300px;
+        max-width: 100%;
+        width: 100%;
     }
 
     .muffin-nav-buttons {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
         gap: 0.5rem;
         margin-bottom: 3rem;
     }
@@ -1718,13 +1810,10 @@ html {
 }
 
 @media (max-width: 480px) {
-    .muffin-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
 
     .muffin-logo img {
-        max-width: 250px;
+        max-width: 100%;
+        width: 100%;
     }
 
     .nav-button {
@@ -1867,6 +1956,28 @@ html {
     margin-bottom: 2rem;
 }
 
+/* All grids visible for scrolling functionality */
+#muffinGrid, #drinkGrid, #cakeGrid {
+    display: grid;
+}
+
+@media (max-width: 1024px) {
+    .muffin-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+    }
+    
+    .muffin-item {
+        padding: 1rem !important;
+    }
+    
+    .muffin-item img {
+        max-width: 150px !important;
+        height: 150px !important;
+    }
+}
+
 .muffin-item {
     text-align: center;
     background: transparent;
@@ -1954,22 +2065,42 @@ html {
     font-style: italic;
 }
 
-/* Responsive Design */
+/* Responsive Design - Progressive grid layout */
 @media (max-width: 1200px) {
     .muffin-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
     }
 }
 
 @media (max-width: 1024px) {
     .muffin-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .muffin-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.8rem !important;
     }
 }
 
 @media (max-width: 768px) {
     .muffin-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+    }
+    
+    .muffin-item {
+        padding: 1rem !important;
+    }
+    
+    .muffin-item img {
+        max-width: 150px !important;
+        height: 150px !important;
     }
     
     .muffin-title {
@@ -1979,7 +2110,18 @@ html {
 
 @media (max-width: 480px) {
     .muffin-grid {
-        grid-template-columns: repeat(2, 1fr);
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.8rem !important;
+    }
+    
+    .muffin-item {
+        padding: 0.8rem !important;
+    }
+    
+    .muffin-item img {
+        max-width: 120px !important;
+        height: 120px !important;
     }
     
     .muffin-title {
@@ -2091,7 +2233,10 @@ html {
 /* Responsive Design for Muffin Nav */
 @media (max-width: 768px) {
     .muffin-nav-buttons {
-        gap: 1rem;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
     }
     
     .muffin-nav-buttons .nav-button {

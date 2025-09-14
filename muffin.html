@@ -30,9 +30,9 @@
                     <li class="nav-item dropdown">
                         <a href="muffin.html" class="nav-link active">MENU</a>
                         <ul class="dropdown-menu">
-                            <li><a href="muffin.html?category=muffin">MUFFIN</a></li>
-                            <li><a href="muffin.html?category=drink">DRINK</a></li>
-                            <li><a href="muffin.html?category=cake">CAKE</a></li>
+                            <li><a href="#muffin-section">MUFFIN</a></li>
+                            <li><a href="#drink-section">DRINK</a></li>
+                            <li><a href="#cake-section">CAKE</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -60,13 +60,13 @@
                 <img src="v_logo2.png" alt="Frieren The Rock Logo">
             </div>
             <div class="muffin-nav-buttons">
-                <a href="muffin.html" class="nav-button active">MUFFIN</a>
+                <a href="#muffin-section" class="nav-button active">MUFFIN</a>
                 <span class="nav-separator">|</span>
-                <a href="#" class="nav-button">DRINK</a>
+                <a href="#drink-section" class="nav-button">DRINK</a>
                 <span class="nav-separator">|</span>
-                <a href="#" class="nav-button">CAKE</a>
+                <a href="#cake-section" class="nav-button">CAKE</a>
             </div>
-            <div class="muffin-grid" id="muffinGrid">
+            <div class="muffin-grid" id="muffinGrid" data-section="muffin-section">
                 <div class="muffin-item">
                     <img src="레몬.png" alt="Lemon Muffin">
                     <h3 class="muffin-name">Lemon</h3>
@@ -114,7 +114,7 @@
                 </div>
             </div>
             
-            <div class="muffin-grid" id="drinkGrid" style="display: none;">
+            <div class="muffin-grid" id="drinkGrid" data-section="drink-section" style="display: none;">
                 <!-- ESPRESSO -->
                 <div class="menu-category">
                     <h2 class="category-title">ESPRESSO</h2>
@@ -177,69 +177,103 @@
                 </div>
 
             </div>
+            
+            <div class="muffin-grid" id="cakeGrid" data-section="cake-section" style="display: none;">
+                <!-- CAKE -->
+                <div class="menu-category">
+                    <h2 class="category-title">CAKE</h2>
+                </div>
+                <div class="muffin-item">
+                    <img src="cake.png" alt="Seasonal Fruit Cake">
+                    <h3 class="muffin-name">Seasonal Fruit</h3>
+                    <p class="muffin-price">₩8,000</p>
+                </div>
+                <div class="muffin-item">
+                    <img src="cake.png" alt="Salty Caramel Cake">
+                    <h3 class="muffin-name">Salty Caramel</h3>
+                    <p class="muffin-price">₩8,500</p>
+                </div>
+                <div class="muffin-item">
+                    <img src="cake.png" alt="Basque Cheese Cake">
+                    <h3 class="muffin-name">Basque Cheese</h3>
+                    <p class="muffin-price">₩9,000</p>
+                </div>
+                <div class="muffin-item">
+                    <img src="cake.png" alt="Espresso Cake">
+                    <h3 class="muffin-name">Espresso</h3>
+                    <p class="muffin-price">₩8,500</p>
+                </div>
+            </div>
         </div>
     </main>
 
     <script src="script.js"></script>
     <script>
-        // Navigation button functionality
+        // Navigation button functionality with smooth scroll
         document.addEventListener('DOMContentLoaded', function() {
             const navButtons = document.querySelectorAll('.nav-button');
             const muffinGrid = document.getElementById('muffinGrid');
             const drinkGrid = document.getElementById('drinkGrid');
+            const cakeGrid = document.getElementById('cakeGrid');
             
-            // Check URL parameters to determine which category was selected
-            const urlParams = new URLSearchParams(window.location.search);
-            const category = urlParams.get('category');
+            // Set MUFFIN button as active by default
+            navButtons[0].classList.add('active');
             
-            // Set initial active button based on URL parameter
-            if (category) {
-                navButtons.forEach(btn => btn.classList.remove('active'));
-                const targetButton = Array.from(navButtons).find(btn => 
-                    btn.textContent.toLowerCase() === category
-                );
-                if (targetButton) {
-                    targetButton.classList.add('active');
-                    
-                    // Handle initial menu content
-                    if (category === 'muffin') {
-                        muffinGrid.style.display = 'grid';
-                        drinkGrid.style.display = 'none';
-                    } else if (category === 'drink') {
-                        muffinGrid.style.display = 'none';
-                        drinkGrid.style.display = 'grid';
-                    } else if (category === 'cake') {
-                        muffinGrid.style.display = 'none';
-                        drinkGrid.style.display = 'none';
-                    }
-                }
-            }
+            // Show all grids for scrolling functionality
+            muffinGrid.style.display = 'grid';
+            drinkGrid.style.display = 'grid';
+            cakeGrid.style.display = 'grid';
             
+            // Handle main nav buttons
             navButtons.forEach(button => {
                 button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
                     // Remove active class from all buttons
                     navButtons.forEach(btn => btn.classList.remove('active'));
                     
                     // Add active class to clicked button
                     this.classList.add('active');
                     
-                    // Handle menu content based on button clicked
-                    const buttonText = this.textContent;
+                    // Get target section
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.querySelector(`[data-section="${targetId}"]`);
                     
-                    if (buttonText === 'MUFFIN') {
-                        muffinGrid.style.display = 'grid';
-                        drinkGrid.style.display = 'none';
-                    } else if (buttonText === 'DRINK') {
-                        muffinGrid.style.display = 'none';
-                        drinkGrid.style.display = 'grid';
-                    } else if (buttonText === 'CAKE') {
-                        muffinGrid.style.display = 'none';
-                        drinkGrid.style.display = 'none';
+                    if (targetElement) {
+                        // Smooth scroll to target section
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
                     }
+                });
+            });
+            
+            // Handle dropdown menu links
+            const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
                     
-                    // Prevent default navigation for demo
-                    if (this.getAttribute('href') === '#') {
-                        e.preventDefault();
+                    // Get target section
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.querySelector(`[data-section="${targetId}"]`);
+                    
+                    if (targetElement) {
+                        // Smooth scroll to target section
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Update active button based on dropdown selection
+                        navButtons.forEach(btn => btn.classList.remove('active'));
+                        const correspondingButton = Array.from(navButtons).find(btn => 
+                            btn.getAttribute('href') === this.getAttribute('href')
+                        );
+                        if (correspondingButton) {
+                            correspondingButton.classList.add('active');
+                        }
                     }
                 });
             });
