@@ -1276,9 +1276,13 @@ body {
 
     .hero-buttons {
         position: absolute;
-        bottom: 80px;
+        bottom: 120px;
         left: 50%;
         transform: translateX(-50%);
+    }
+    
+    .hero-buttons .btn {
+        white-space: nowrap;
     }
 
     .hero-title img {
@@ -1364,9 +1368,13 @@ body {
 
     .hero-buttons {
         position: absolute;
-        bottom: 80px;
+        bottom: 120px;
         left: 50%;
         transform: translateX(-50%);
+    }
+    
+    .hero-buttons .btn {
+        white-space: nowrap;
     }
 
     .btn {
@@ -1511,11 +1519,13 @@ html {
         gap: 1rem !important;
         justify-content: center !important;
         margin: 0 auto !important;
+        max-width: 600px;
+        padding: 0 2rem;
     }
     
     .menu-item img {
-        max-width: 150px !important;
-        height: 150px !important;
+        max-width: 180px !important;
+        height: 180px !important;
     }
 }
 
@@ -1526,11 +1536,13 @@ html {
         gap: 1rem !important;
         justify-content: center !important;
         margin: 0 auto !important;
+        max-width: 500px;
+        padding: 0 1.5rem;
     }
     
     .menu-item img {
-        max-width: 130px !important;
-        height: 130px !important;
+        max-width: 160px !important;
+        height: 160px !important;
     }
 }
 
@@ -1541,11 +1553,13 @@ html {
         gap: 0.8rem !important;
         justify-content: center !important;
         margin: 0 auto !important;
+        max-width: 400px;
+        padding: 0 1rem;
     }
     
     .menu-item img {
-        max-width: 110px !important;
-        height: 110px !important;
+        max-width: 140px !important;
+        height: 140px !important;
     }
 }
 
@@ -2597,24 +2611,24 @@ html {
     .diary-container {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        display: flex;
+        flex-direction: column;
     }
 
     .calendar-section {
-        grid-column: 1;
-        grid-row: 2;
+        order: 1;
         padding: 1rem;
     }
 
     .diary-content {
-        grid-column: 1;
-        grid-row: 3;
+        order: 2;
         padding: 1rem;
     }
 
     .upload-section {
-        grid-column: 1;
-        grid-row: 4;
+        order: 3;
         padding: 1rem;
+        margin-top: 1rem;
     }
     
     .diary-title {
@@ -2673,6 +2687,24 @@ html {
     .diary-content,
     .upload-section {
         padding: 0.8rem;
+    }
+    
+    .diary-container {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .calendar-section {
+        order: 1;
+    }
+    
+    .diary-content {
+        order: 2;
+    }
+    
+    .upload-section {
+        order: 3;
+        margin-top: 1rem;
     }
 
     .calendar-day {
