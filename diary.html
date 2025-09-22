@@ -226,6 +226,12 @@
                         thumbnail.src = diaryEntries[formatDate(dayDate)].thumbnailUrl || diaryEntries[formatDate(dayDate)].imageUrl;
                         thumbnail.className = 'day-thumbnail';
                         thumbnail.alt = 'Diary image';
+                        thumbnail.onload = function() {
+                            console.log('Thumbnail loaded for date:', formatDate(dayDate));
+                        };
+                        thumbnail.onerror = function() {
+                            console.log('Thumbnail failed to load for date:', formatDate(dayDate));
+                        };
                         dayElement.appendChild(thumbnail);
                     }
                     
