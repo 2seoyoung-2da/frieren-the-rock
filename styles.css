@@ -1579,6 +1579,43 @@ html {
     }
 }
 
+/* Mobile fine-tuning for 402px devices (e.g., iPhone 16 Pro logical width) */
+@media (max-width: 402px) {
+    /* Consistent 2-col layout and margins on main and muffin pages */
+    .menu-grid,
+    .muffin-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.8rem !important;
+        max-width: 360px;
+        padding: 0 1rem;
+        margin: 0 auto;
+        justify-items: center;
+    }
+
+    /* Image sizing - prevent clipping and keep same size across pages */
+    .menu-image img {
+        max-width: 130px;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .muffin-grid .muffin-item img {
+        max-width: 130px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        object-fit: contain;
+    }
+
+    /* Title/text sizing - unify main and muffin */
+    .menu-name,
+    .muffin-name {
+        font-size: 1.1rem;
+    }
+}
+
 .menu-item {
     background: transparent;
     border-radius: 0;
