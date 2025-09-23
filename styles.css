@@ -1513,18 +1513,28 @@ html {
     margin-left: auto;
     margin-right: auto;
     padding: 0 2rem;
+    justify-items: center; /* center items within each grid cell */
+}
+
+/* Ensure desktop keeps multi-column layout */
+@media (min-width: 1200px) {
+    .menu-grid {
+        grid-template-columns: repeat(4, 1fr); /* desktop: 4 columns */
+        max-width: 1200px;
+    }
 }
 
 /* Responsive menu grid for mobile */
 @media (max-width: 1024px) {
     .menu-grid {
         display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: repeat(3, 1fr) !important; /* tablet: 3 columns */
         gap: 1rem !important;
         justify-content: center !important;
-        margin: 0 auto !important;
+        margin: 0 auto !important; /* center grid */
         max-width: 600px;
         padding: 0 2rem;
+        justify-items: center; /* center items */
     }
     
     .menu-item img {
@@ -1536,12 +1546,13 @@ html {
 @media (max-width: 768px) {
     .menu-grid {
         display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* mobile: 2 columns */
         gap: 1rem !important;
         justify-content: center !important;
         margin: 0 auto !important;
         max-width: 500px;
         padding: 0 1.5rem;
+        justify-items: center;
     }
     
     .menu-item img {
@@ -1559,6 +1570,7 @@ html {
         margin: 0 auto !important;
         max-width: 400px;
         padding: 0 1rem;
+        justify-items: center;
     }
     
     .menu-item img {
@@ -1593,9 +1605,11 @@ html {
 
 .menu-image img {
     max-width: 180px;
-    height: 180px;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain; /* prevent clipping */
     border-radius: 10px;
+    display: block;
+    margin: 0 auto; /* center image inside cell */
 }
 
 .menu-item .hover-img {
