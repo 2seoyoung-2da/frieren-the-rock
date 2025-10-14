@@ -8,6 +8,97 @@
     box-sizing: border-box;
 }
 
+/* ===== FORCE OVERRIDES: menu-grid columns and image sizes ===== */
+/* Custom columns: 235px–580px: 3 cols, 581px+: 4 cols, <235px: 2 cols */
+.menu-grid { grid-template-columns: repeat(4, 1fr) !important; }
+@media (max-width: 580px) { .menu-grid { grid-template-columns: repeat(3, 1fr) !important; } }
+@media (max-width: 234px) { .menu-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+
+/* Stabilize image sizing by breakpoint to avoid shrink/expand glitches */
+.menu-item img { transition: width .25s ease, height .25s ease, max-width .25s ease; }
+@media (max-width: 580px)  { .menu-item img { max-width: 130px !important; height: 130px !important; } }
+@media (min-width: 601px) and (max-width: 1024px) { .menu-item img { max-width: 150px !important; height: 150px !important; } }
+@media (min-width: 1200px) { .menu-item img { max-width: 180px !important; height: 180px !important; } }
+
+/* =============================
+   MENU IMAGE SWAP (PC hover / Mobile safe)
+   ============================= */
+/* Stack two images and show only one by default */
+.menu-image {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 1.5rem;
+    overflow: hidden;
+}
+.menu-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Default: show only the default image */
+.menu-image .default-img { display: block !important; opacity: 1 !important; transition: opacity .25s ease; }
+.menu-image .hover-img   { display: none  !important; opacity: 0 !important; transition: opacity .25s ease; }
+
+/* PC (hover capable): swap on hover */
+@media (hover: hover) {
+    .menu-item:hover .menu-image .default-img { display: none !important; opacity: 0 !important; }
+    .menu-item:hover .menu-image .hover-img   { display: block !important; opacity: 1 !important; }
+}
+
+/* Mobile (no hover): keep default visible even if :hover is emulated */
+@media (hover: none) {
+    .menu-item:hover .menu-image .default-img { display: block !important; opacity: 1 !important; }
+    .menu-item:hover .menu-image .hover-img   { display: none  !important; opacity: 0 !important; }
+}
+
+/* Optional tap-to-toggle (when .toggled is added via JS) */
+.menu-item.toggled .menu-image .default-img { display: none !important; opacity: 0 !important; }
+.menu-item.toggled .menu-image .hover-img   { display: block !important; opacity: 1 !important; }
+
+/* =============================
+   MENU GRID: 2 -> 3 -> 4 only
+   ============================= */
+/* Base (tablet default 3 cols). Transition for smoothness when changing */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem;
+    margin: 0 auto 2rem;
+    padding: 0 2rem;
+    max-width: 1200px;
+    justify-items: center;
+    transition: grid-template-columns .25s ease, gap .25s ease, padding .25s ease;
+}
+
+/* Mobile: 2 columns, keep current mobile image size */
+@media (max-width: 560px) {
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+        max-width: 500px;
+        padding: 0 1.5rem;
+    }
+    .menu-item img { max-width: 130px !important; height: 130px !important; }
+}
+
+/* Tablet: 3 columns */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .menu-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 1rem !important;
+        max-width: 900px;
+    }
+    .menu-item img { max-width: 150px !important; height: 150px !important; }
+}
+
+/* Desktop: 4 columns */
+@media (min-width: 1200px) {
+    .menu-grid { grid-template-columns: repeat(4, 1fr) !important; }
+}
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
@@ -1506,33 +1597,30 @@ html {
 
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-bottom: 2rem;
-    max-width: 1000px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     padding: 0 2rem;
-    justify-items: center; /* center items within each grid cell */
+    justify-items: center;
 }
 
 /* Ensure desktop keeps multi-column layout */
 @media (min-width: 1200px) {
-    .menu-grid {
-        grid-template-columns: repeat(4, 1fr); /* desktop: 4 columns */
-        max-width: 1200px;
-    }
+    .menu-grid { grid-template-columns: repeat(4, 1fr) !important; }
 }
 
 /* Responsive menu grid for mobile */
-@media (max-width: 1024px) {
+/* Tablet: strictly 3 columns */
+@media (min-width: 601px) and (max-width: 1024px) {
     .menu-grid {
-        display: grid !important;
         grid-template-columns: repeat(3, 1fr) !important; /* tablet: 3 columns */
         gap: 1rem !important;
         justify-content: center !important;
         margin: 0 auto !important; /* center grid */
-        max-width: 600px;
+        max-width: 900px;
         padding: 0 2rem;
         justify-items: center; /* center items */
     }
@@ -1543,9 +1631,8 @@ html {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .menu-grid {
-        display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important; /* mobile: 2 columns */
         gap: 1rem !important;
         justify-content: center !important;
@@ -1561,6 +1648,7 @@ html {
     }
 }
 
+/* Mobile: strictly 2 columns */
 @media (max-width: 600px) {
     .menu-grid {
         display: grid !important;
@@ -1720,6 +1808,10 @@ html {
 .menu-image img + img { display: none; }
 .menu-item:hover .menu-image img + img { display: block; }
 .menu-item:hover .menu-image img:first-child { display: none; }
+@media (hover: none) {
+    .menu-item:hover .menu-image img + img { display: none; }
+    .menu-item:hover .menu-image img:first-child { display: block; }
+}
 .menu-item.toggled .menu-image img + img { display: block; }
 .menu-item.toggled .menu-image img:first-child { display: none; }
 
@@ -3213,3 +3305,75 @@ html {
         font-size: 0.9rem;
     }
 } 
+
+/* ===================================================================
+   메인 메뉴 이미지 스왑 & 반응형 그리드 최종본 (기존 규칙 덮어쓰기)
+   =================================================================== */
+
+/* 1) 이미지 스왑 로직 (PC hover / Mobile touch 안전) */
+.menu-image {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 1.5rem;
+    overflow: hidden;
+}
+.menu-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s ease-in-out;
+}
+/* 기본: hover 이미지는 숨김, 기본 이미지만 노출 */
+.menu-item .hover-img { opacity: 0; }
+.menu-item .default-img { opacity: 1; }
+
+/* PC에서만 hover 교체 동작 */
+@media (hover: hover) {
+    .menu-item:hover .default-img { opacity: 0; }
+    .menu-item:hover .hover-img { opacity: 1; }
+}
+/* 터치 기기: hover 시에도 기본 이미지만 유지 (JS로 .toggled 사용할 수 있음) */
+@media (hover: none) {
+    .menu-item:hover .default-img { opacity: 1; }
+    .menu-item:hover .hover-img { opacity: 0; }
+}
+/* JS 토글 전환 지원 */
+.menu-item.toggled .default-img { opacity: 0; }
+.menu-item.toggled .hover-img { opacity: 1; }
+
+/* 2) 반응형 그리드: 2 -> 3 -> 4 만 되도록 고정 */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+    padding: 0 2rem;
+    justify-items: center;
+    transition: all 0.3s ease-in-out;
+}
+.menu-item img { transition: all 0.3s ease-in-out; }
+
+/* 태블릿: 3열 */
+@media (max-width: 1024px) {
+    .menu-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 900px;
+        gap: 1.5rem;
+    }
+    .menu-item img { max-width: 150px !important; height: 150px !important; }
+}
+/* 모바일: 2열 (현재 모바일 사이즈 유지) */
+@media (max-width: 768px) {
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+    .menu-item img { max-width: 130px !important; height: 130px !important; }
+}
