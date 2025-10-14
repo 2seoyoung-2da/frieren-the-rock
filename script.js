@@ -229,6 +229,18 @@ window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
 
+// Mobile: tap to toggle hover image in main menu
+document.addEventListener('DOMContentLoaded', () => {
+    const isTouch = matchMedia('(hover: none)').matches || 'ontouchstart' in window;
+    if (isTouch) {
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('toggled');
+            });
+        });
+    }
+});
+
 // Preload animations
 document.addEventListener('DOMContentLoaded', () => {
     // Add initial animations

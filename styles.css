@@ -1561,14 +1561,14 @@ html {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .menu-grid {
         display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* mobile: 2 columns */
         gap: 1rem !important;
         justify-content: center !important;
         margin: 0 auto !important;
-        max-width: 400px;
+        max-width: 500px;
         padding: 0 1.5rem;
         justify-items: center;
     }
@@ -1600,6 +1600,11 @@ html {
         display: block !important;
         margin: 0 auto !important;
     }
+    /* Prevent double images on mobile: hide hover swap; enable JS toggle */
+    .menu-item .hover-img { display: none !important; opacity: 0 !important; }
+    .menu-item .default-img { display: block !important; opacity: 1 !important; }
+    .menu-item.toggled .hover-img { display: block !important; opacity: 1 !important; }
+    .menu-item.toggled .default-img { opacity: 0 !important; }
 
     .menu-name,
     .muffin-name {
@@ -1646,6 +1651,11 @@ html {
         display: block !important;
         margin: 0 auto !important;
     }
+    /* Prevent double images on mobile: hide hover swap; enable JS toggle */
+    .menu-item .hover-img { display: none !important; opacity: 0 !important; }
+    .menu-item .default-img { display: block !important; opacity: 1 !important; }
+    .menu-item.toggled .hover-img { display: block !important; opacity: 1 !important; }
+    .menu-item.toggled .default-img { opacity: 0 !important; }
 
     /* 텍스트 크기 통일 */
     .menu-name,
@@ -1690,9 +1700,9 @@ html {
     width: 200px;
     height: 200px;
     margin: 0 auto 1.5rem auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative; /* stack images */
+    overflow: hidden;
+    display: block;
 }
 
 .menu-image img {
@@ -1700,21 +1710,26 @@ html {
     height: auto;
     object-fit: contain; /* prevent clipping */
     border-radius: 10px;
-    display: block;
-    margin: 0 auto; /* center image inside cell */
+    position: absolute; /* overlay default/hover */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.menu-item .hover-img {
-    display: none;
-}
+/* Structural safety: hide second image by default and only show on hover/toggle */
+.menu-image img + img { display: none; }
+.menu-item:hover .menu-image img + img { display: block; }
+.menu-item:hover .menu-image img:first-child { display: none; }
+.menu-item.toggled .menu-image img + img { display: block; }
+.menu-item.toggled .menu-image img:first-child { display: none; }
 
-.menu-item:hover .default-img {
-    display: none;
-}
-
-.menu-item:hover .hover-img {
-    display: block;
-}
+.menu-item .hover-img { opacity: 0; transition: opacity 0.25s ease; display: none; }
+.menu-item .default-img { opacity: 1; transition: opacity 0.25s ease; display: block; }
+.menu-item:hover .default-img { opacity: 0; display: none; }
+.menu-item:hover .hover-img { opacity: 1; display: block; }
+/* Tap-toggle support */
+.menu-item.toggled .default-img { opacity: 0; display: none; }
+.menu-item.toggled .hover-img { opacity: 1; display: block; }
 
 .menu-name {
     font-family: 'Playfair Display', serif;
@@ -1722,6 +1737,15 @@ html {
     color: #744e3b;
     margin-bottom: 1rem;
     font-weight: 600;
+}
+
+/* Disable hover-swap on touch devices to prevent double images */
+@media (hover: none) {
+    /* On touch devices, keep default visible and hover hidden */
+    .menu-item .hover-img { opacity: 0 !important; }
+    .menu-item:hover .hover-img { opacity: 0 !important; }
+    .menu-item .default-img { opacity: 1 !important; }
+    .menu-item:hover .default-img { opacity: 1 !important; }
 }
 
 .menu-description {
@@ -2118,7 +2142,7 @@ html {
 .muffin-item img {
     width: 100%;
     max-width: 200px;
-    height: 200px;
+    height: auto;
     object-fit: contain;
     border-radius: 10px;
     margin-bottom: 1rem;
@@ -2202,6 +2226,8 @@ html {
     .muffin-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 1rem !important;
+        margin: 0 auto !important;
+        justify-items: center !important;
     }
 }
 
@@ -2248,6 +2274,10 @@ html {
     .muffin-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 1rem !important;
+        max-width: 600px;
+        padding: 0 1.5rem;
+        margin: 0 auto;
+        justify-items: center;
     }
     
     .muffin-item {
