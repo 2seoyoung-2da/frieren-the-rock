@@ -21,45 +21,6 @@
 @media (min-width: 1200px) { .menu-item img { max-width: 180px !important; height: 180px !important; } }
 
 /* =============================
-   MENU IMAGE SWAP (PC hover / Mobile safe)
-   ============================= */
-/* Stack two images and show only one by default */
-.menu-image {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 1.5rem;
-    overflow: hidden;
-}
-.menu-image img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-/* Default: show only the default image */
-.menu-image .default-img { display: block !important; opacity: 1 !important; transition: opacity .25s ease; }
-.menu-image .hover-img   { display: none  !important; opacity: 0 !important; transition: opacity .25s ease; }
-
-/* PC (hover capable): swap on hover */
-@media (hover: hover) {
-    .menu-item:hover .menu-image .default-img { display: none !important; opacity: 0 !important; }
-    .menu-item:hover .menu-image .hover-img   { display: block !important; opacity: 1 !important; }
-}
-
-/* Mobile (no hover): keep default visible even if :hover is emulated */
-@media (hover: none) {
-    .menu-item:hover .menu-image .default-img { display: block !important; opacity: 1 !important; }
-    .menu-item:hover .menu-image .hover-img   { display: none  !important; opacity: 0 !important; }
-}
-
-/* Optional tap-to-toggle (when .toggled is added via JS) */
-.menu-item.toggled .menu-image .default-img { display: none !important; opacity: 0 !important; }
-.menu-item.toggled .menu-image .hover-img   { display: block !important; opacity: 1 !important; }
-
-/* =============================
    MENU GRID: 2 -> 3 -> 4 only
    ============================= */
 /* Base (tablet default 3 cols). Transition for smoothness when changing */
@@ -1783,46 +1744,6 @@ html {
     transform: translateY(-5px);
 }
 
-.menu-image {
-    margin-bottom: 1.5rem;
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 1.5rem auto;
-    position: relative; /* stack images */
-    overflow: hidden;
-    display: block;
-}
-
-.menu-image img {
-    max-width: 180px;
-    height: auto;
-    object-fit: contain; /* prevent clipping */
-    border-radius: 10px;
-    position: absolute; /* overlay default/hover */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-/* Structural safety: hide second image by default and only show on hover/toggle */
-.menu-image img + img { display: none; }
-.menu-item:hover .menu-image img + img { display: block; }
-.menu-item:hover .menu-image img:first-child { display: none; }
-@media (hover: none) {
-    .menu-item:hover .menu-image img + img { display: none; }
-    .menu-item:hover .menu-image img:first-child { display: block; }
-}
-.menu-item.toggled .menu-image img + img { display: block; }
-.menu-item.toggled .menu-image img:first-child { display: none; }
-
-.menu-item .hover-img { opacity: 0; transition: opacity 0.25s ease; display: none; }
-.menu-item .default-img { opacity: 1; transition: opacity 0.25s ease; display: block; }
-.menu-item:hover .default-img { opacity: 0; display: none; }
-.menu-item:hover .hover-img { opacity: 1; display: block; }
-/* Tap-toggle support */
-.menu-item.toggled .default-img { opacity: 0; display: none; }
-.menu-item.toggled .hover-img { opacity: 1; display: block; }
-
 .menu-name {
     font-family: 'Playfair Display', serif;
     font-size: 1.3rem;
@@ -2107,7 +2028,7 @@ html {
 /* Main Hero Visual Section */
 .hero {
     height: 100vh;
-    background: url('./main.jpg');
+    background: url('./img/main.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -2225,6 +2146,9 @@ html {
     border-radius: 15px;
     padding: 1.5rem;
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .muffin-item:hover {
@@ -2241,6 +2165,7 @@ html {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 0;
 }
 
 .muffin-name {
@@ -2248,7 +2173,10 @@ html {
     font-size: 1.2rem;
     color: #744e3b;
     margin: 0;
+    margin-top: 1rem; /* 텍스트 상단 정렬을 위한 일관된 여백 */
     font-weight: 600;
+    align-self: flex-start; /* 텍스트 상단 정렬 */
+    width: 100%;
 }
 
 .muffin-price {
@@ -2256,7 +2184,10 @@ html {
     font-size: 1rem;
     color: #744e3b;
     margin: 0;
+    margin-top: 0.5rem; /* 텍스트 상단 정렬을 위한 일관된 여백 */
     font-weight: 300;
+    align-self: flex-start; /* 텍스트 상단 정렬 */
+    width: 100%;
 }
 
 /* Menu Categories */
@@ -3320,12 +3251,14 @@ html {
 }
 .menu-image img {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.1s ease-in-out;
 }
 /* 기본: hover 이미지는 숨김, 기본 이미지만 노출 */
 .menu-item .hover-img { opacity: 0; }

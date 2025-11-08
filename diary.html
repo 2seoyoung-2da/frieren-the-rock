@@ -9,49 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header class="header">
-        <div class="header-container">
-            <!-- Mobile Menu Button -->
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <!-- Logo -->
-            <div class="logo">
-                <a href="index.html">
-                    <img src="b_logo.png" alt="Frieren The Rock Logo">
-                </a>
-            </div>
-
-            <!-- Navigation -->
-            <nav class="nav">
-                <ul class="nav-list">
-                    <li class="nav-item dropdown">
-                        <a href="muffin.html" class="nav-link">MENU</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="muffin.html?category=muffin">MUFFIN</a></li>
-                            <li><a href="muffin.html?category=drink">DRINK</a></li>
-                            <li><a href="muffin.html?category=cake">CAKE</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="diary.html" class="nav-link active">M.Diary</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="order.html" class="nav-link">ORDER</a>
-                    </li>
-                </ul>
-            </nav>
-
-            <!-- User Actions -->
-            <div class="user-actions">
-                <a href="https://www.instagram.com/frierentherock?igsh=aXpzN3Bma3QydHFt" class="instagram-link" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </div>
-        </div>
-    </header>
+    <div id="site-header"></div>
 
     <!-- Diary Section -->
     <main class="diary-page">
@@ -134,6 +92,7 @@
         </div>
     </main>
 
+    <script src="header.js"></script>
     <script src="script.js"></script>
     <script>
         // Calendar functionality

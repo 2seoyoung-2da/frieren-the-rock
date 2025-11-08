@@ -1,16 +1,80 @@
 // DOM Elements
 const introSection = document.getElementById('introSection');
 const mainPage = document.getElementById('mainPage');
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const mainNav = document.querySelector('.nav');
-const navClose = document.getElementById('navClose');
-const notificationBtn = document.getElementById('notificationBtn');
-const profileBtn = document.getElementById('profileBtn');
-const loginBtn = document.getElementById('loginBtn');
-const notificationDropdown = document.getElementById('notificationDropdown');
-const profileDropdown = document.getElementById('profileDropdown');
-const loginModal = document.getElementById('loginModal');
-const modalClose = document.getElementById('modalClose');
+let mobileMenuBtn;
+let mainNav;
+let navClose;
+let notificationBtn;
+let profileBtn;
+let loginBtn;
+let notificationDropdown;
+let profileDropdown;
+let loginModal;
+let modalClose;
+let header;
+
+function initHeaderElements() {
+    mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    mainNav = document.querySelector('.nav');
+    navClose = document.getElementById('navClose');
+    notificationBtn = document.getElementById('notificationBtn');
+    profileBtn = document.getElementById('profileBtn');
+    loginBtn = document.getElementById('loginBtn');
+    notificationDropdown = document.getElementById('notificationDropdown');
+    profileDropdown = document.getElementById('profileDropdown');
+    loginModal = document.getElementById('loginModal');
+    modalClose = document.getElementById('modalClose');
+    header = document.querySelector('.header') || header;
+
+    if (mobileMenuBtn && !mobileMenuBtn.dataset.bound) {
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileMenuBtn.dataset.bound = 'true';
+    }
+
+    if (navClose && !navClose.dataset.bound) {
+        navClose.addEventListener('click', closeMobileMenu);
+        navClose.dataset.bound = 'true';
+    }
+
+    if (notificationBtn && !notificationBtn.dataset.bound) {
+        notificationBtn.addEventListener('click', toggleNotificationDropdown);
+        notificationBtn.dataset.bound = 'true';
+    }
+
+    if (profileBtn && !profileBtn.dataset.bound) {
+        profileBtn.addEventListener('click', toggleProfileDropdown);
+        profileBtn.dataset.bound = 'true';
+    }
+
+    if (loginBtn && !loginBtn.dataset.bound) {
+        loginBtn.addEventListener('click', openLoginModal);
+        loginBtn.dataset.bound = 'true';
+    }
+
+    if (modalClose && !modalClose.dataset.bound) {
+        modalClose.addEventListener('click', closeLoginModal);
+        modalClose.dataset.bound = 'true';
+    }
+
+    if (loginModal && !loginModal.dataset.boundOverlay) {
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                closeLoginModal();
+            }
+        });
+        loginModal.dataset.boundOverlay = 'true';
+    }
+
+    if (notificationDropdown && !notificationDropdown.dataset.boundStop) {
+        notificationDropdown.addEventListener('click', (e) => e.stopPropagation());
+        notificationDropdown.dataset.boundStop = 'true';
+    }
+
+    if (profileDropdown && !profileDropdown.dataset.boundStop) {
+        profileDropdown.addEventListener('click', (e) => e.stopPropagation());
+        profileDropdown.dataset.boundStop = 'true';
+    }
+}
 
 // Intro Animation Control
 function goToMainPage() {
@@ -42,11 +106,13 @@ if (clickIndicator) {
 
 // Mobile Menu Toggle
 function toggleMobileMenu() {
+    if (!mainNav) return;
     mainNav.classList.toggle('active');
     document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
 }
 
 function closeMobileMenu() {
+    if (!mainNav) return;
     mainNav.classList.remove('active');
     document.body.style.overflow = '';
 }
@@ -62,6 +128,9 @@ if (navClose) {
 
 // Close mobile menu when clicking outside
 document.addEventListener('click', (e) => {
+    if (!mainNav || !mobileMenuBtn) {
+        return;
+    }
     if (!mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
         closeMobileMenu();
     }
@@ -74,6 +143,7 @@ function closeAllDropdowns() {
 }
 
 function toggleNotificationDropdown(e) {
+    if (!notificationDropdown) return;
     e.stopPropagation();
     const isActive = notificationDropdown.classList.contains('active');
     closeAllDropdowns();
@@ -83,6 +153,7 @@ function toggleNotificationDropdown(e) {
 }
 
 function toggleProfileDropdown(e) {
+    if (!profileDropdown) return;
     e.stopPropagation();
     const isActive = profileDropdown.classList.contains('active');
     closeAllDropdowns();
@@ -103,10 +174,6 @@ if (profileBtn) {
 // Close dropdowns when clicking outside
 document.addEventListener('click', closeAllDropdowns);
 
-// Prevent dropdown from closing when clicking inside
-notificationDropdown?.addEventListener('click', (e) => e.stopPropagation());
-profileDropdown?.addEventListener('click', (e) => e.stopPropagation());
-
 // Login Modal Management
 function openLoginModal() {
     loginModal?.classList.add('active');
@@ -118,22 +185,6 @@ function closeLoginModal() {
     document.body.style.overflow = '';
 }
 
-// Login modal event listeners
-if (loginBtn) {
-    loginBtn.addEventListener('click', openLoginModal);
-}
-
-if (modalClose) {
-    modalClose.addEventListener('click', closeLoginModal);
-}
-
-// Close modal when clicking overlay
-loginModal?.addEventListener('click', (e) => {
-    if (e.target === loginModal) {
-        closeLoginModal();
-    }
-});
-
 // Close modal with escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
@@ -144,25 +195,31 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-        closeMobileMenu();
+function initSmoothScrollAnchors() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        if (anchor.dataset.smoothBound === 'true') return;
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+            closeMobileMenu();
+        });
+        anchor.dataset.smoothBound = 'true';
     });
-});
+}
 
 // Header scroll effect
 let lastScrollTop = 0;
-const header = document.querySelector('.header');
 
 window.addEventListener('scroll', () => {
+    if (!header) {
+        header = document.querySelector('.header');
+    }
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
     // Add shadow on scroll
@@ -267,6 +324,7 @@ document.addEventListener('touchend', e => {
 function handleGesture() {
     const swipeThreshold = 100;
     const swipeDistance = touchEndX - touchStartX;
+    if (!mainNav) return;
     
     if (Math.abs(swipeDistance) > swipeThreshold) {
         if (swipeDistance > 0 && mainNav.classList.contains('active')) {
@@ -315,3 +373,12 @@ const imageObserver = new IntersectionObserver((entries) => {
 lazyImages.forEach(img => imageObserver.observe(img));
 
 console.log('Vegan Delights website loaded successfully! 🍰✨'); 
+
+document.addEventListener('DOMContentLoaded', () => {
+    initHeaderElements();
+    initSmoothScrollAnchors();
+});
+document.addEventListener('headerLoaded', () => {
+    initHeaderElements();
+    initSmoothScrollAnchors();
+});
