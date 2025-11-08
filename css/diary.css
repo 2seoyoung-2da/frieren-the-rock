@@ -1,0 +1,484 @@
+/* Diary Page Styles */
+.diary-page {
+    padding-top: 100px;
+    min-height: 100vh;
+    background: #fcf7e1;
+}
+
+.diary-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.diary-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: #e75b14;
+    margin-bottom: 3rem;
+    font-weight: 600;
+    grid-column: 1 / -1;
+}
+
+/* Calendar Section */
+.calendar-section {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-left: 0.5rem;
+}
+
+.calendar-nav {
+    display: none;
+}
+
+.current-month {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #333;
+    font-weight: 300;
+    gap: 20px;
+}
+
+.current-month .month-number {
+    font-size: 6rem;
+    transform: translate(10px, -10px);
+}
+
+.current-month .month-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-family: 'Playfair Display', serif;
+}
+
+.current-month .month-name {
+    margin-bottom: 0px;
+}
+
+.calendar {
+    width: 100%;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    margin-bottom: 1rem;
+}
+
+.weekday {
+    text-align: center;
+    font-weight: 600;
+    color: #744e3b;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: #999;
+}
+
+.calendar-day.current-month-day {
+    color: #333;
+}
+
+.calendar-day:hover {
+    background: #f0f0f0;
+}
+
+.calendar-day.selected {
+    background: #e75b14;
+    color: white;
+}
+
+.calendar-day.has-entry {
+    position: relative;
+}
+
+.calendar-day.has-entry::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: #e75b14;
+    border-radius: 50%;
+}
+
+.calendar-day.has-entry.selected::after {
+    background: white;
+}
+
+/* Diary Content */
+.diary-content {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    grid-column: 2;
+    grid-row: 2;
+}
+
+/* Upload Section */
+.upload-section {
+    margin-bottom: 2rem;
+    grid-column: 1 / -1;
+    grid-row: 3;
+}
+
+.password-form, .upload-form {
+    text-align: left;
+}
+
+.password-form h3 {
+    display: inline-block;
+    margin-right: 12rem;
+    margin-bottom: 0;
+}
+
+.password-form h3, .upload-form h3 {
+    font-family: 'Nanum Brush Script', cursive;
+    color: #744e3b;
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-transform: lowercase;
+}
+
+.password-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.password-form input {
+    padding: 0.8rem;
+    border: none;
+    border-bottom: 1px solid #744e3b;
+    border-radius: 0;
+    font-size: 1rem;
+    width: 200px;
+    background: transparent;
+}
+
+.password-form button, .upload-form button {
+    background: #744e3b;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.password-form button:hover, .upload-form button:hover {
+    background: #5a3a2a;
+}
+
+.upload-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.file-upload-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.file-upload-group label {
+    font-family: 'Nanum Brush Script', cursive;
+    color: #744e3b;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.upload-controls input, .upload-controls textarea {
+    padding: 0.8rem;
+    border: 2px solid #e75b14;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Nanum Brush Script', cursive;
+}
+
+.upload-controls textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.upload-controls button {
+    margin: 0.5rem;
+}
+
+#logoutBtn {
+    background: #666;
+}
+
+#logoutBtn:hover {
+    background: #444;
+}
+
+.diary-date {
+    margin-bottom: 1.5rem;
+}
+
+.diary-date h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #e75b14;
+    font-weight: 600;
+}
+
+.diary-text {
+    line-height: 1.8;
+}
+
+.diary-text p {
+    font-family: 'Nanum Brush Script', cursive;
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0;
+}
+
+.diary-image {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.diary-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.day-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.calendar-day.has-entry {
+    position: relative;
+}
+
+.calendar-day.has-entry > div:first-child {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .diary-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .calendar-section,
+    .diary-content,
+    .upload-section {
+        grid-column: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .diary-page {
+        margin-top: 80px;
+        padding: 1rem;
+    }
+
+    .diary-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .calendar-section {
+        order: 1;
+        padding: 1rem;
+    }
+
+    .diary-content {
+        order: 2;
+        padding: 1rem;
+    }
+
+    .upload-section {
+        order: 3;
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .diary-title {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .calendar-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .calendar-nav {
+        gap: 0.5rem;
+    }
+
+    .calendar-nav button {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .calendar-weekdays {
+        font-size: 0.8rem;
+    }
+
+    .calendar-day {
+        font-size: 0.8rem;
+        padding: 0.3rem;
+        min-height: 40px;
+    }
+    
+    .day-thumbnail {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 6px;
+    }
+    
+    .calendar-day.has-entry > div:first-child {
+        width: 16px;
+        height: 16px;
+        font-size: 0.7rem;
+    }
+    
+    .diary-date h3 {
+        font-size: 1.5rem;
+    }
+    
+    .diary-text p {
+        font-size: 1.1rem;
+    }
+
+    .diary-image {
+        margin: 1rem 0;
+    }
+
+    .diary-image img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 420px) {
+    .diary-title {
+        font-size: 2rem;
+    }
+
+    .calendar-section,
+    .diary-content,
+    .upload-section {
+        padding: 0.8rem;
+    }
+    
+    .diary-container {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .calendar-section {
+        order: 1;
+    }
+    
+    .diary-content {
+        order: 2;
+    }
+    
+    .upload-section {
+        order: 3;
+        margin-top: 1rem;
+    }
+
+    .calendar-day {
+        font-size: 0.7rem;
+        padding: 0.2rem;
+        min-height: 35px;
+    }
+    
+    .day-thumbnail {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+    
+    .calendar-day.has-entry > div:first-child {
+        width: 14px;
+        height: 14px;
+        font-size: 0.6rem;
+    }
+
+    .diary-date h3 {
+        font-size: 1.3rem;
+    }
+
+    .diary-text p {
+        font-size: 1rem;
+    }
+}
+
