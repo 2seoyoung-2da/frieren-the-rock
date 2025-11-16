@@ -617,7 +617,7 @@ body {
 }
 
 .hero-title img {
-    max-width: 100%;
+    max-width: 80%;
     height: auto;
     max-height: none;
     object-fit: contain;
@@ -960,7 +960,7 @@ body {
     }
 
     .hero-title img {
-        max-width: 85%;
+        max-width: 75%;
         height: auto;
         margin: 0 auto;
         display: block;
@@ -1026,7 +1026,7 @@ body {
     }
     
     .hero-title img {
-        max-width: 90%;
+        max-width: 85%;
         margin: 0 auto;
         display: block;
         visibility: visible;
